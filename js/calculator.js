@@ -43,28 +43,28 @@ function roundMil(val) {
 
 export const K2_OPTIONS = {
     FC: [
-        { value: '<50',   label: 'K2 < 50%' },
-        { value: '50-60', label: '50% ≤ K2 < 60%' },
-        { value: '60-65', label: '60% ≤ K2 < 65%' },
-        { value: '65-70', label: '65% ≤ K2 < 70%' },
-        { value: '70-80', label: '70% ≤ K2 < 80%' },
-        { value: '80+',   label: 'K2 ≥ 80%' },
+        { value: '<50', label: 'K2 < 50%' },
+        { value: '50-60', label: 'K2 ≥ 50%' },
+        { value: '60-65', label: 'K2 ≥ 60%' },
+        { value: '65-70', label: 'K2 ≥ 65%' },
+        { value: '70-80', label: 'K2 ≥ 70%' },
+        { value: '80+', label: 'K2 ≥ 80%' },
     ],
     SL: [
-        { value: '<40',   label: 'K2 < 40%' },
-        { value: '40-50', label: '40% ≤ K2 < 50%' },
-        { value: '50-60', label: '50% ≤ K2 < 60%' },
-        { value: '60-65', label: '60% ≤ K2 < 65%' },
-        { value: '65-75', label: '65% ≤ K2 < 75%' },
-        { value: '75+',   label: 'K2 ≥ 75%' },
+        { value: '<40', label: 'K2 < 40%' },
+        { value: '40-50', label: 'K2 ≥ 40%' },
+        { value: '50-60', label: 'K2 ≥ 50%' },
+        { value: '60-65', label: 'K2 ≥ 60%' },
+        { value: '65-75', label: 'K2 ≥ 65%' },
+        { value: '75+', label: 'K2 ≥ 75%' },
     ],
     SM: [
-        { value: '<35',   label: 'K2 < 35%' },
-        { value: '35-45', label: '35% ≤ K2 < 45%' },
-        { value: '45-50', label: '45% ≤ K2 < 50%' },
-        { value: '50-60', label: '50% ≤ K2 < 60%' },
-        { value: '60-70', label: '60% ≤ K2 < 70%' },
-        { value: '70+',   label: 'K2 ≥ 70%' },
+        { value: '<35', label: 'K2 < 35%' },
+        { value: '35-45', label: 'K2 ≥ 35%' },
+        { value: '45-50', label: 'K2 ≥ 45%' },
+        { value: '50-60', label: 'K2 ≥ 50%' },
+        { value: '60-70', label: 'K2 ≥ 60%' },
+        { value: '70+', label: 'K2 ≥ 70%' },
     ],
 };
 
@@ -81,14 +81,14 @@ export const K2_DEFAULT_BRACKET = { FC: '80+', SL: '75+', SM: '70+' };
  * @returns {number}
  */
 export function getK2Coefficient(state) {
-    const role    = state.role;
+    const role = state.role;
     const bracket = state.k2Bracket;
-    const month   = state.monthMode;
+    const month = state.monthMode;
     const isAgent = ['FC', 'StarFC'].includes(role);
-    const isSL    = ['GSL', 'SSL', 'ESL'].includes(role);
+    const isSL = ['GSL', 'SSL', 'ESL'].includes(role);
     if (isAgent) return getK2Coefficient_FC(bracket, month);
-    if (isSL)    return getK2Coefficient_SL(bracket, month);
-    return       getK2Coefficient_SM(bracket, month);
+    if (isSL) return getK2Coefficient_SL(bracket, month);
+    return getK2Coefficient_SM(bracket, month);
 }
 
 // ============================================================
@@ -114,12 +114,12 @@ export function getK2Coefficient(state) {
  *   partner, mdrt, extraTotal
  */
 export function calculateIncome(state, overrideFypMillions = null) {
-    const role    = state.role;
-    const fypMil  = overrideFypMillions !== null
+    const role = state.role;
+    const fypMil = overrideFypMillions !== null
         ? safeNum(overrideFypMillions)
         : safeNum(state.fyp) / 1_000_000;
     const fycRate = safeNum(state.fycRate) / 100;
-    const k2Coef  = getK2Coefficient(state);
+    const k2Coef = getK2Coefficient(state);
 
     let total = 0;
     const breakdown = {
@@ -130,9 +130,9 @@ export function calculateIncome(state, overrideFypMillions = null) {
 
     let smDerived = null;
 
-    const isAgent      = ['FC', 'StarFC'].includes(role);
-    const isSL         = ['GSL', 'SSL', 'ESL'].includes(role);
-    const isSM         = ['SM', 'EM', 'ERM', 'IRM'].includes(role);
+    const isAgent = ['FC', 'StarFC'].includes(role);
+    const isSL = ['GSL', 'SSL', 'ESL'].includes(role);
+    const isSM = ['SM', 'EM', 'ERM', 'IRM'].includes(role);
     const calcPersonal = isAgent || ((isSL || isSM) && state.hasPersonalSales);
 
     // ======================================================
@@ -144,20 +144,20 @@ export function calculateIncome(state, overrideFypMillions = null) {
             fypMil,
             fycRate,
             k2Coef,
-            aitom:               state.aitom,
-            hasQuarterBonus:     state.hasQuarterBonus && (isAgent || state.hasPersonalSales),
-            fypQuarterRaw:       state.fypQuarter,
+            aitom: state.aitom,
+            hasQuarterBonus: state.hasQuarterBonus && (isAgent || state.hasPersonalSales),
+            fypQuarterRaw: state.fypQuarter,
             quarterActiveMonths: state.quarterActiveMonths,
-            fypRaw:              state.fyp,
-            starFcContracts:     state.starFcContracts,
+            fypRaw: state.fyp,
+            starFcContracts: state.starFcContracts,
             starFcReferralFypRaw: state.starFcReferralFyp,
-            monthMode:           state.monthMode,
+            monthMode: state.monthMode,
         });
 
-        breakdown.fyc          = personal.fyc;
-        breakdown.bonusMonth   = personal.bonusMonth;
+        breakdown.fyc = personal.fyc;
+        breakdown.bonusMonth = personal.bonusMonth;
         breakdown.bonusQuarter = personal.bonusQuarter;
-        breakdown.starSupport  = personal.starSupport;
+        breakdown.starSupport = personal.starSupport;
 
         total += breakdown.fyc + breakdown.bonusMonth + breakdown.bonusQuarter + breakdown.starSupport;
     }
@@ -168,27 +168,27 @@ export function calculateIncome(state, overrideFypMillions = null) {
     if (isSL) {
         const slResult = calculateSLFees({
             role,
-            slFycRate:           safeNum(state.fycRateSl) / 100,
-            teamFypTT:           safeNum(state.fycTeamDirect),
-            l1FypMil:            safeNum(state.fycTeamIndirectL1),
-            l2FypMil:            safeNum(state.fycTeamIndirectL2),
+            slFycRate: safeNum(state.fycRateSl) / 100,
+            teamFypTT: safeNum(state.fycTeamDirect),
+            l1FypMil: safeNum(state.fycTeamIndirectL1),
+            l2FypMil: safeNum(state.fycTeamIndirectL2),
             k2Coef,
-            slAppointmentType:   state.slAppointmentType,
-            monthMode:           state.monthMode,
-            activeHeadcount:     state.activeHeadcount,
-            hasSlQuarterBonus:   state.hasSlQuarterBonus,
-            fypTeamQuarterRaw:   state.fypTeamQuarter,
-            l1FypQuarterRaw:     state.fycTeamIndirectL1Quarter,
-            l2FypQuarterRaw:     state.fycTeamIndirectL2Quarter,
+            slAppointmentType: state.slAppointmentType,
+            monthMode: state.monthMode,
+            activeHeadcount: state.activeHeadcount,
+            hasSlQuarterBonus: state.hasSlQuarterBonus,
+            fypTeamQuarterRaw: state.fypTeamQuarter,
+            l1FypQuarterRaw: state.fycTeamIndirectL1Quarter,
+            l2FypQuarterRaw: state.fycTeamIndirectL2Quarter,
         });
 
-        breakdown.mgmtQuarter  = slResult.mgmtQuarter;
+        breakdown.mgmtQuarter = slResult.mgmtQuarter;
         breakdown.mgmtTraining = slResult.mgmtTraining;
-        breakdown.mgmtDirect   = slResult.mgmtDirect;
+        breakdown.mgmtDirect = slResult.mgmtDirect;
         breakdown.mgmtIndirect = slResult.mgmtIndirect;
 
         total += breakdown.mgmtQuarter + breakdown.mgmtTraining
-               + breakdown.mgmtDirect  + breakdown.mgmtIndirect;
+            + breakdown.mgmtDirect + breakdown.mgmtIndirect;
     }
 
     // ======================================================
@@ -201,30 +201,30 @@ export function calculateIncome(state, overrideFypMillions = null) {
 
         const smResult = calculateSMFees({
             role,
-            smFycRate:                  safeNum(state.fycRateSm) / 100,
-            fypTTMil:                   safeNum(state.fypTeamDirectSm) / 1_000_000,
+            smFycRate: safeNum(state.fycRateSm) / 100,
+            fypTTMil: safeNum(state.fypTeamDirectSm) / 1_000_000,
             fypL1Mil,
             fypL2Mil,
             fypL3Mil,
-            smTargetRevenueMil:         safeNum(state.smTargetRevenue) / 1_000_000,
-            smTargetRatio:              state.smTargetRatio,
-            activeHeadcountSm:          state.activeHeadcountSm,
+            smTargetRevenueMil: safeNum(state.smTargetRevenue) / 1_000_000,
+            smTargetRatio: state.smTargetRatio,
+            activeHeadcountSm: state.activeHeadcountSm,
             k2Coef,
-            hasSmQuarterBonus:          state.hasSmQuarterBonus,
-            fypTeamQuarterSmRaw:        state.fypTeamQuarterSm,
-            fypQuarterIndirectSmL1Raw:  state.fypQuarterIndirectSmL1,
-            fypQuarterIndirectSmL2Raw:  state.fypQuarterIndirectSmL2,
-            fypQuarterIndirectSmL3Raw:  state.fypQuarterIndirectSmL3,
+            hasSmQuarterBonus: state.hasSmQuarterBonus,
+            fypTeamQuarterSmRaw: state.fypTeamQuarterSm,
+            fypQuarterIndirectSmL1Raw: state.fypQuarterIndirectSmL1,
+            fypQuarterIndirectSmL2Raw: state.fypQuarterIndirectSmL2,
+            fypQuarterIndirectSmL3Raw: state.fypQuarterIndirectSmL3,
         });
 
-        breakdown.mgmtTraining   = smResult.mgmtTraining;
-        breakdown.mgmtDirect     = smResult.mgmtDirect;
+        breakdown.mgmtTraining = smResult.mgmtTraining;
+        breakdown.mgmtDirect = smResult.mgmtDirect;
         breakdown.mgmtIndirectSm = smResult.mgmtIndirectSm;
-        breakdown.mgmtQuarter    = smResult.mgmtQuarter;
-        smDerived                = smResult.smDerived;
+        breakdown.mgmtQuarter = smResult.mgmtQuarter;
+        smDerived = smResult.smDerived;
 
         total += breakdown.mgmtTraining + breakdown.mgmtDirect
-               + breakdown.mgmtIndirectSm + breakdown.mgmtQuarter;
+            + breakdown.mgmtIndirectSm + breakdown.mgmtQuarter;
     }
 
     // ======================================================
@@ -232,7 +232,7 @@ export function calculateIncome(state, overrideFypMillions = null) {
     // ======================================================
     const partnerK2Met = ['70-80', '80+'].includes(state.k2Bracket);
     if (state.partner !== 'none' && partnerK2Met) {
-        const pRate   = { G: 0.10, S: 0.15, E: 0.20 }[state.partner] || 0;
+        const pRate = { G: 0.10, S: 0.15, E: 0.20 }[state.partner] || 0;
         const fypMilP = safeNum(state.fyp) / 1_000_000;
         breakdown.partner = roundMil(fypMilP * (safeNum(state.fycRate) / 100) * pRate);
         total += breakdown.partner;
