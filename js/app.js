@@ -1,6 +1,6 @@
 // ============================================================
 // APP.JS — UI Controller
-// Import: state.js (state management) + calculator.js (pure logic)
+// Import: state.js (state management) + calculator.js (orchestrator)
 // Không chứa bất kỳ công thức tính toán nào.
 // ============================================================
 import {
@@ -382,8 +382,10 @@ function renderExtraBonusList() {
             row.style.transform = 'translateX(8px)';
             setTimeout(() => {
                 const st = getState();
-                st.extraBonuses = st.extraBonuses.filter(x => x.id !== b.id);
+                // Clone array trước khi lọc — tuân thủ thiết kế immutable
+                const newArray = st.extraBonuses.filter(x => x.id !== b.id);
                 st.hiddenKeys.delete('extra_' + b.id);
+                updateState('extraBonuses', newArray);
                 renderExtraBonusList();
                 requestAnimationFrame(() => { renderExtraBonusPhoneRows(); recalcTotal(); });
             }, 250);
@@ -1129,7 +1131,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add bonus
     document.getElementById('add-bonus-btn').addEventListener('click', () => {
-        getState().extraBonuses.push({ id: ++bonusIdCounter, name: '', type: 'month', amountVND: 0 });
+        // Clone array rồi thêm phần tử mới — tuân thủ thiết kế immutable
+        const newBonus = { id: ++bonusIdCounter, name: '', type: 'month', amountVND: 0 };
+        updateState('extraBonuses', [...getState().extraBonuses, newBonus]);
         renderExtraBonusList();
         setTimeout(() => {
             const list = document.getElementById('extra-bonus-list');
