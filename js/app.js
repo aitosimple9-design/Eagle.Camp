@@ -222,11 +222,11 @@ function renderExtraBonusPhoneRows() {
     container.innerHTML = '';
 
     state.extraBonuses.forEach(b => {
-        const monthly = b.type === 'quarter' ? b.amountVND / 3_000_000 : b.amountVND / 1_000_000;
+        const monthly = b.amountVND / 1_000_000;
         if (monthly <= 0) return;
         if (state.hiddenKeys.has('extra_' + b.id)) return;
 
-        const typeLabel = b.type === 'quarter' ? ' (Quý÷3)' : '';
+        const typeLabel = b.type ? ` - ${b.type}` : '';
         const nameText  = b.name || 'Khoản thưởng';
 
         const row = document.createElement('div');
@@ -345,10 +345,7 @@ function renderExtraBonusList() {
 
         row.innerHTML = `
             <input type="text" class="bonus-name-input input-base text-sm py-2 px-3 min-h-[40px]" placeholder="Tên khoản thưởng..." value="${b.name}">
-            <select class="bonus-type-select input-base text-xs py-2 px-3 min-h-[40px]">
-                <option value="month" ${b.type === 'month' ? 'selected' : ''}>Cố định tháng</option>
-                <option value="quarter" ${b.type === 'quarter' ? 'selected' : ''}>Tính theo Quý (÷3)</option>
-            </select>
+            <input type="text" class="bonus-type-input input-base text-sm py-2 px-3 min-h-[40px]" placeholder="Loại" value="${b.type || ''}">
             <div class="relative">
                 <input type="text" inputmode="numeric"
                     class="bonus-amount-input vnd-input-base text-xs py-2 pl-3 pr-6 min-h-[40px]"
@@ -366,7 +363,7 @@ function renderExtraBonusList() {
             if (bonus) bonus.name = e.target.value;
             requestAnimationFrame(() => { renderExtraBonusPhoneRows(); recalcTotal(); });
         });
-        row.querySelector('.bonus-type-select').addEventListener('change', (e) => {
+        row.querySelector('.bonus-type-input').addEventListener('input', (e) => {
             const bonus = getState().extraBonuses.find(x => x.id === b.id);
             if (bonus) bonus.type = e.target.value;
             requestAnimationFrame(() => { renderExtraBonusPhoneRows(); recalcTotal(); });
@@ -1132,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add bonus
     document.getElementById('add-bonus-btn').addEventListener('click', () => {
         // Clone array rồi thêm phần tử mới — tuân thủ thiết kế immutable
-        const newBonus = { id: ++bonusIdCounter, name: '', type: 'month', amountVND: 0 };
+        const newBonus = { id: ++bonusIdCounter, name: '', type: '', amountVND: 0 };
         updateState('extraBonuses', [...getState().extraBonuses, newBonus]);
         renderExtraBonusList();
         setTimeout(() => {

@@ -236,9 +236,7 @@ export function calculateIncome(state, overrideFypMillions = null) {
     let extraTotal = 0;
     if (Array.isArray(state.extraBonuses)) {
         state.extraBonuses.forEach(b => {
-            const monthly = b.type === 'quarter'
-                ? safeNum(b.amountVND) / 3_000_000
-                : safeNum(b.amountVND) / 1_000_000;
+            const monthly = safeNum(b.amountVND) / 1_000_000;
             extraTotal += monthly;
         });
     }
@@ -274,9 +272,7 @@ export function calculateVisibleTotal(state) {
     if (Array.isArray(state.extraBonuses)) {
         state.extraBonuses.forEach(b => {
             if (!state.hiddenKeys.has('extra_' + b.id)) {
-                const monthly = b.type === 'quarter'
-                    ? safeNum(b.amountVND) / 3_000_000
-                    : safeNum(b.amountVND) / 1_000_000;
+                const monthly = safeNum(b.amountVND) / 1_000_000;
                 visible += monthly;
             }
         });
