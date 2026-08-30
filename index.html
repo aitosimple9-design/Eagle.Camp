@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Công cụ Ước tính Thu nhập Shinhan Life 2026</title>
-    <meta name="description" content="Công cụ ước tính thu nhập &amp; phí dịch vụ Đại lý/Quản lý kinh doanh Shinhan Life 2026.">
+    <meta name="description"
+        content="Công cụ ước tính thu nhập &amp; phí dịch vụ Đại lý/Quản lý kinh doanh Shinhan Life 2026.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -61,720 +63,925 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased min-h-screen transition-colors duration-300">
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<body
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased min-h-screen transition-colors duration-300">
 
-    <!-- ===== HEADER ===== -->
-    <header class="mb-8 flex items-center justify-between flex-wrap gap-4">
-        <div>
-            <h1 class="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                <i class="fa-solid fa-calculator text-teal-600 dark:text-teal-400"></i>
-                Shinhan Life 2026 Calculator
-            </h1>
-            <p class="text-slate-500 dark:text-slate-400 mt-2">Công cụ ước tính thu nhập &amp; phí dịch vụ Đại lý/Quản lý kinh doanh</p>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="hidden md:block">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Shinhan_Bank_logo.svg/2560px-Shinhan_Bank_logo.svg.png" alt="Shinhan Logo" class="h-10 opacity-80 dark:opacity-60 dark:invert mix-blend-multiply dark:mix-blend-normal">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ===== HEADER ===== -->
+        <header class="mb-8 flex items-center justify-between flex-wrap gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                    <i class="fa-solid fa-calculator text-teal-600 dark:text-teal-400"></i>
+                    Shinhan Life 2026 Calculator
+                </h1>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Công cụ ước tính thu nhập &amp; phí dịch vụ Đại
+                    lý/Quản lý kinh doanh</p>
             </div>
-            <button id="dark-toggle" aria-label="Chuyển chế độ sáng/tối"
-                class="flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-yellow-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all shadow-sm text-sm font-medium">
-                <i id="dm-icon-sun" class="fa-solid fa-sun text-base transition-all duration-300"></i>
-                <i id="dm-icon-moon" class="fa-solid fa-moon text-base transition-all duration-300 hidden"></i>
-                <span id="dm-label" class="mode-label">Chế độ Sáng</span>
-            </button>
-        </div>
-    </header>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- ===== LEFT COLUMN (7/12) ===== -->
-        <div class="w-full lg:col-span-7 space-y-6">
-
-            <!-- Card 1: Role Selection -->
-            <div class="card-base">
-                <h2 class="card-title"><i class="fa-solid fa-user-tie text-teal-600 dark:text-teal-400"></i> Chọn Chức Danh</h2>
-
-                <!-- Tab Bar -->
-                <div class="flex bg-slate-900/60 backdrop-blur-md border border-white/[0.05] p-1 rounded-2xl gap-1 mb-6" id="role-tabs">
-                    <button class="role-tab active flex-1 py-2 px-3 rounded-xl text-sm transition-all" data-tab="agent">
-                        <i class="fa-solid fa-user mr-1"></i> Đại lý
-                    </button>
-                    <button class="role-tab flex-1 py-2 px-3 rounded-xl text-sm transition-all" data-tab="sl">
-                        <i class="fa-solid fa-users mr-1"></i> Quản lý (SL+)
-                    </button>
-                    <button class="role-tab flex-1 py-2 px-3 rounded-xl text-sm transition-all" data-tab="sm">
-                        <i class="fa-solid fa-crown mr-1"></i> Cấp cao (SM+)
-                    </button>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:block">
+                    <img src="./Ảnh/Logo-Eagle.Camp.png" alt="Shinhan Logo"
+                        class="h-10 opacity-80 dark:opacity-60 dark:invert mix-blend-multiply dark:mix-blend-normal">
                 </div>
-
-                <!-- Tab: Agent -->
-                <div id="tab-panel-agent" class="tab-panel">
-                    <div class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-2 gap-1.5">
-                        <button class="role-btn active role-btn-base" data-role="FC">
-                            <i class="fa-solid fa-user text-xl"></i>
-                            <span class="font-medium text-sm">FC</span>
-                        </button>
-                        <button class="role-btn role-btn-base" data-role="StarFC">
-                            <i class="fa-solid fa-star text-xl text-yellow-400"></i>
-                            <span class="font-medium text-sm">Star FC</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tab: SL+ -->
-                <div id="tab-panel-sl" class="tab-panel hidden">
-                    <label class="personal-sales-toggle-base">
-                        <div>
-                            <div class="font-medium text-sm text-teal-900 dark:text-teal-200">Có phát sinh doanh số cá nhân trong tháng?</div>
-                            <div class="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Nếu có, sẽ tính dồn thêm FYC + Thưởng cá nhân</div>
-                        </div>
-                        <div class="relative flex items-center ml-4 shrink-0">
-                            <input type="checkbox" id="has-personal-sales-sl" class="peer sr-only">
-                            <div class="toggle-track peer-checked:bg-teal-600"></div>
-                        </div>
-                    </label>
-                    <div class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-3 gap-1.5">
-                        <button class="role-btn role-btn-base" data-role="GSL">
-                            <span class="font-bold text-lg text-teal-700 dark:text-teal-400">G</span>
-                            <span class="font-medium text-sm">GSL</span>
-                            <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Trưởng nhóm</span>
-                        </button>
-                        <button class="role-btn role-btn-base" data-role="SSL">
-                            <span class="font-bold text-lg text-teal-700 dark:text-teal-400">S</span>
-                            <span class="font-medium text-sm">SSL</span>
-                            <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Trưởng ban</span>
-                        </button>
-                        <button class="role-btn role-btn-base" data-role="ESL">
-                            <span class="font-bold text-lg text-teal-700 dark:text-teal-400">E</span>
-                            <span class="font-medium text-sm">ESL</span>
-                            <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">TB cấp cao</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tab: SM+ -->
-                <div id="tab-panel-sm" class="tab-panel hidden">
-                    <label class="personal-sales-toggle-base">
-                        <div>
-                            <div class="font-medium text-sm text-teal-900 dark:text-teal-200">Có phát sinh doanh số cá nhân trong tháng?</div>
-                            <div class="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Nếu có, sẽ tính dồn thêm FYC + Thưởng cá nhân</div>
-                        </div>
-                        <div class="relative flex items-center ml-4 shrink-0">
-                            <input type="checkbox" id="has-personal-sales-sm" class="peer sr-only">
-                            <div class="toggle-track peer-checked:bg-teal-600"></div>
-                        </div>
-                    </label>
-                    <div class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-4 gap-1.5">
-                        <button class="role-btn role-btn-base" data-role="SM"><span class="font-medium text-sm">SM</span></button>
-                        <button class="role-btn role-btn-base" data-role="EM"><span class="font-medium text-sm">EM</span></button>
-                        <button class="role-btn role-btn-base" data-role="ERM"><span class="font-medium text-sm">ERM</span></button>
-                        <button class="role-btn role-btn-base" data-role="IRM"><span class="font-medium text-sm">IRM</span></button>
-                    </div>
-                </div>
-
-                <!-- Tỷ lệ K2 — Dropdown theo nhóm -->
-                <div class="mt-4 p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
-                    <div class="flex items-center justify-between gap-3">
-                        <div>
-                            <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Tỷ lệ duy trì HĐ (K2)</label>
-                            <div id="k2-subtitle" class="text-xs text-slate-500 mt-0.5">Hệ số K2 cá nhân — ảnh hưởng đến Thưởng năng suất</div>
-                        </div>
-                        <select id="k2-rate" class="input-base min-w-[170px] w-auto font-semibold text-teal-700 dark:text-teal-400">
-                            <!-- Options được render động bởi JS theo role -->
-                        </select>
-                    </div>
-                    <div id="k2-coef-badge" class="mt-2 text-right text-xs text-slate-400"></div>
-                </div>
+                <button id="dark-toggle" aria-label="Chuyển chế độ sáng/tối"
+                    class="flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-yellow-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all shadow-sm text-sm font-medium">
+                    <i id="dm-icon-sun" class="fa-solid fa-sun text-base transition-all duration-300"></i>
+                    <i id="dm-icon-moon" class="fa-solid fa-moon text-base transition-all duration-300 hidden"></i>
+                    <span id="dm-label" class="mode-label">Chế độ Sáng</span>
+                </button>
             </div>
+        </header>
 
-            <!-- Card 2: Active Month -->
-            <div class="card-base">
-                <h2 class="card-title"><i class="fa-regular fa-calendar-check text-teal-600 dark:text-teal-400"></i> Tháng Hoạt Động</h2>
-                <div id="month-btn-group" class="flex flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="1">M1</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="2">M2</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="3">M3</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="4">M4</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="5-12">M5-M12</button>
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="13+">M13+</button>
-                </div>
-                <!-- SL month groups (role-specific, grouped for aesthetics & logic) -->
-                <div id="gsl-month-btn-group" class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="1-9" data-group="gsl">M1 - M9</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="10-11" data-group="gsl">M10 - M11</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="12+" data-group="gsl">M12+</button>
-                </div>
-                <div id="ssl-month-btn-group" class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="1-11" data-group="ssl">M1 - M11</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="12" data-group="ssl">M12</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="13+" data-group="ssl">M13+</button>
-                </div>
-                <div id="esl-month-btn-group" class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="1-11" data-group="esl">M1 - M11</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="12-15" data-group="esl">M12 - M15</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="16+" data-group="esl">M16+</button>
-                </div>
-                <!-- SM+ month group -->
-                <div id="sm-month-btn-group" class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="1" data-group="sm">M1</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="2" data-group="sm">M2</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="3" data-group="sm">M3</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="4-12" data-group="sm">M4-M12</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="13+" data-group="sm">M13+</button>
-                </div>
-                <div id="starfc-month-btn-group" class="hidden flex flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
-                    <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium" data-month="1">M1</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="2-7">M2-M7</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="8-13">M8-M13</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="14-19">M14-M19</button>
-                    <button class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300" data-month="20+">M20+</button>
-                </div>
-                <p id="month-hint" class="text-xs text-slate-400 dark:text-slate-500 mt-2 hidden"></p>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            <!-- Card 3: Personal Metrics -->
-            <div class="card-base" id="personal-section">
-                <h2 class="card-title"><i class="fa-solid fa-chart-line text-teal-600 dark:text-teal-400"></i> Chỉ Số Cá Nhân</h2>
+            <!-- ===== LEFT COLUMN (7/12) ===== -->
+            <div class="w-full lg:col-span-7 space-y-6">
 
-                <!-- FYP -->
-                <div class="mb-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <label class="text-sm font-medium text-slate-700 dark:text-slate-300">FYP Cá Nhân</label>
-                        <div class="flex items-center gap-2">
-                            <span id="fyp-val-display" class="text-teal-700 dark:text-teal-400 font-bold text-sm mr-1">30.000.000 ₫</span>
-                            <button id="fyp-mode-toggle" class="mode-toggle-btn">
-                                <i id="fyp-mode-icon" class="fa-solid fa-sliders"></i>
-                                <span id="fyp-mode-label">Thanh trượt</span>
+                <!-- Card 1: Role Selection -->
+                <div class="card-base">
+                    <h2 class="card-title"><i class="fa-solid fa-user-tie text-teal-600 dark:text-teal-400"></i> Chọn
+                        Chức Danh</h2>
+
+                    <!-- Tab Bar -->
+                    <div class="flex bg-slate-900/60 backdrop-blur-md border border-white/[0.05] p-1 rounded-2xl gap-1 mb-6"
+                        id="role-tabs">
+                        <button class="role-tab active flex-1 py-2 px-3 rounded-xl text-sm transition-all"
+                            data-tab="agent">
+                            <i class="fa-solid fa-user mr-1"></i> Đại lý
+                        </button>
+                        <button class="role-tab flex-1 py-2 px-3 rounded-xl text-sm transition-all" data-tab="sl">
+                            <i class="fa-solid fa-users mr-1"></i> Quản lý (SL+)
+                        </button>
+                        <button class="role-tab flex-1 py-2 px-3 rounded-xl text-sm transition-all" data-tab="sm">
+                            <i class="fa-solid fa-crown mr-1"></i> Cấp cao (SM+)
+                        </button>
+                    </div>
+
+                    <!-- Tab: Agent -->
+                    <div id="tab-panel-agent" class="tab-panel">
+                        <div
+                            class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-2 gap-1.5">
+                            <button class="role-btn active role-btn-base" data-role="FC">
+                                <i class="fa-solid fa-user text-xl"></i>
+                                <span class="font-medium text-sm">FC</span>
+                            </button>
+                            <button class="role-btn role-btn-base" data-role="StarFC">
+                                <i class="fa-solid fa-star text-xl text-yellow-400"></i>
+                                <span class="font-medium text-sm">Star FC</span>
                             </button>
                         </div>
                     </div>
-                    <!-- Slider Mode -->
-                    <div id="fyp-slider-block">
-                        <input type="range" id="fyp-slider" min="0" max="200000000" value="30000000" step="1000000" class="range-input">
-                        <div class="flex justify-between mt-3 gap-2">
-                            <button class="fyp-quick-btn quick-btn-base" data-val="10000000">10 tr</button>
-                            <button class="fyp-quick-btn quick-btn-base" data-val="25000000">25 tr</button>
-                            <button class="fyp-quick-btn quick-btn-base" data-val="50000000">50 tr</button>
-                            <button class="fyp-quick-btn quick-btn-base" data-val="100000000">100 tr</button>
-                        </div>
-                    </div>
-                    <!-- Number Mode -->
-                    <div id="fyp-number-block" class="hidden">
-                        <div class="relative">
-                            <input type="text" id="fyp-number-input" inputmode="numeric" placeholder="Ví dụ: 30.000.000" class="vnd-input-large">
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
-                        </div>
-                        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5">Nhập số nguyên, hệ thống tự định dạng.</p>
-                    </div>
-                </div>
 
-                <!-- Star FC M1: Số Hợp Đồng -->
-                <div id="star-fc-contracts-container" class="hidden mb-6 p-3 bg-teal-50 dark:bg-teal-950/20 rounded-xl border border-teal-200 dark:border-teal-800/30">
-                    <label class="input-label">Số Hợp Đồng Tháng (M1)</label>
-                    <p class="text-xs text-teal-600 dark:text-teal-400 mb-2">Dùng xác định mức hỗ trợ tháng 1 chương trình Ngôi Sao.</p>
-                    <input type="number" id="star-fc-contracts" min="0" max="20" value="3" class="input-base">
-                </div>
-
-                <!-- Star FC M14-M19: FYP từ ĐLBH giới thiệu -->
-                <div id="star-fc-referral-fyp-container" class="hidden mb-6 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-xl border border-yellow-200 dark:border-yellow-800/30">
-                    <label class="input-label text-yellow-800 dark:text-yellow-300">FYP Từ ĐLBH Được Giới Thiệu (VNĐ)</label>
-                    <p class="text-xs text-yellow-600 dark:text-yellow-400 mb-2">Dùng xác định mức hỗ trợ giai đoạn M14–M19 (Bảng 5).</p>
-                    <div class="relative">
-                        <input type="text" id="star-fc-referral-fyp" inputmode="numeric" placeholder="Ví dụ: 60.000.000" class="vnd-input-base">
-                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                    </div>
-                </div>
-
-                <!-- Thưởng Quý (FC/StarFC) -->
-                <div id="fc-quarter-section" class="mt-6 border-t border-slate-200 dark:border-white/10 pt-5">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Thưởng Quý</div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="has-quarter-bonus" class="sr-only peer">
-                            <div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-500"></div>
-                        </label>
-                    </div>
-                    
-                    <div id="fc-quarter-fields" class="grid grid-cols-2 gap-4 hidden bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-white/5">
-                        <div>
-                            <label class="block text-xs text-slate-500 mb-1">FYP Quý Cá nhân (VNĐ)</label>
-                            <input type="text" id="fyp-quarter-number" inputmode="numeric" class="vnd-input-base text-sm py-2" placeholder="0">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-500 mb-1">Số tháng HĐ</label>
-                            <select id="quarter-active-months" class="input-base text-sm py-2">
-                                <option value="3">3 tháng (120%)</option>
-                                <option value="2">2 tháng (100%)</option>
-                                <option value="1">1 tháng (80%)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 mt-5">
-                    <div>
-                        <label class="block text-xs text-slate-500 mb-1">Tỷ lệ Hoa hồng (%)</label>
-                        <input type="number" id="fyc-rate" class="input-base" value="30">
-                    </div>
-                    <!-- AiTOM Grade -->
-                    <div id="aitom-container">
-                        <label class="input-label">AiTOM Grade</label>
-                        <div class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-5 gap-1.5" id="aitom-btn-group">
-                            <button class="aitom-btn active" data-grade="S">S</button>
-                            <button class="aitom-btn" data-grade="A">A</button>
-                            <button class="aitom-btn" data-grade="B">B</button>
-                            <button class="aitom-btn" data-grade="C">C</button>
-                            <button class="aitom-btn" data-grade="D">D</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4: Team Metrics -->
-            <div class="card-base hidden fade-in" id="team-section">
-                <h2 class="card-title"><i class="fa-solid fa-users text-teal-600 dark:text-teal-400"></i> Chỉ Số Nhóm / Ban</h2>
-
-                <!-- SL Appointment type -->
-                <div id="sl-appointment-row" class="hidden mb-4 flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
-                    <div>
-                        <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Loại Bổ Nhiệm</label>
-                        <div class="text-xs text-slate-500">Chỉ áp dụng Phí Đào tạo cho Tuyển ngang</div>
-                    </div>
-                    <div class="flex bg-slate-200 dark:bg-slate-900 p-1 rounded-lg shrink-0" id="sl-appointment-toggles">
-                        <button class="appointment-btn active px-3 py-1.5 rounded-md text-xs font-semibold" data-type="lateral">Tuyển ngang</button>
-                        <button class="appointment-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-500" data-type="promotion">Thăng cấp</button>
-                    </div>
-                </div>
-
-                <!-- ===== SM+ section (target completion at top) ===== -->
-                <div id="sm-fields" class="hidden mb-5">
-                    <!-- Chỉ tiêu tháng - PROMINENT -->
-                    <div class="mb-4 p-4 bg-gradient-to-r from-teal-500/10 to-teal-600/5 rounded-xl border border-teal-300/40 dark:border-teal-600/30">
-                        <label class="text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400 flex items-center gap-2 mb-3">
-                            <i class="fa-solid fa-bullseye"></i>
-                            Chỉ Tiêu Doanh Số Tháng
-                            <span class="text-[10px] bg-teal-500 text-white px-2 py-0.5 rounded-full font-bold">Tự động</span>
-                        </label>
-                        <div class="relative">
-                            <input type="text" id="sm-target-number" readonly
-                                class="w-full pl-5 pr-14 py-4 text-2xl font-extrabold tracking-wide min-h-[64px] rounded-xl text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-800 border-2 border-teal-400/50 dark:border-teal-500/40 focus:outline-none cursor-default">
-                            <span class="absolute right-5 top-1/2 -translate-y-1/2 text-teal-500 dark:text-teal-400 font-bold text-lg">₫</span>
-                        </div>
-                    </div>
-
-                    <!-- 3-column: Tỷ lệ | Doanh số thực tế | Số lượt -->
-                    <div class="grid grid-cols-3 gap-3 mb-4">
-                        <div>
-                            <label class="input-label">Tỷ lệ HT (%)</label>
-                            <div class="relative">
-                                <input type="number" id="sm-target-ratio" value="100" class="input-base pr-8 font-bold text-teal-700 dark:text-teal-400">
-                                <span class="absolute right-3 top-3.5 text-slate-400 text-xs">%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="input-label flex items-center justify-between">
-                                DS Thực tế
-                                <button id="sm-unlock-btn" title="Mở/Khóa sửa tay" class="text-slate-400 hover:text-teal-500"><i id="sm-lock-icon" class="fa-solid fa-lock text-xs"></i></button>
-                            </label>
-                            <div class="relative">
-                                <input type="text" id="sm-actual-number" inputmode="numeric" readonly
-                                    class="vnd-input-base !bg-slate-200 dark:!bg-slate-900/40 cursor-not-allowed font-bold text-teal-700 dark:text-teal-400 text-xs pl-2 pr-6">
-                                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 text-xs">₫</span>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="input-label">Số lượt HĐ</label>
-                            <div class="relative">
-                                <input type="number" id="active-headcount-sm" value="5" min="1" max="999" class="input-base pr-10 font-bold text-teal-700 dark:text-teal-400">
-                                <span class="absolute right-3 top-3.5 text-slate-400 text-xs">lượt</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tỷ lệ FYC SM+ -->
-                    <div class="mb-4">
-                        <label class="input-label">Tỷ lệ Hoa hồng FYC (%)</label>
-                        <div class="relative">
-                            <input type="number" id="fyc-rate-sm" value="30" class="input-base pr-8">
-                            <span class="absolute right-4 top-3.5 text-slate-400">%</span>
-                        </div>
-                    </div>
-
-                    <!-- FYP Nhóm TT (SM) -->
-                    <div class="mb-3">
-                        <label class="input-label">FYP Nhóm Trực Tiếp (VNĐ)</label>
-                        <div class="relative">
-                            <input type="text" id="fyp-team-direct-sm" inputmode="numeric" placeholder="Ví dụ: 5.000.000.000" class="vnd-input-large">
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
-                        </div>
-                    </div>
-
-                    <!-- FYP GT layers (EM, ERM, IRM) -->
-                    <div id="sm-indirect-fields" class="space-y-3 p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800/30 mt-4">
-                        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">Nhóm Gián Tiếp</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div id="sm-indirect-l1-col">
-                                <label class="input-label">FYP GT Lớp 1 (VNĐ)</label>
-                                <div class="relative">
-                                    <input type="text" id="fyp-indirect-sm-l1" inputmode="numeric" placeholder="Ví dụ: 2.000.000.000" class="vnd-input-base">
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                </div>
-                            </div>
-                            <div id="sm-indirect-l2-col" class="hidden">
-                                <label class="input-label">FYP GT Lớp 2 (VNĐ)</label>
-                                <div class="relative">
-                                    <input type="text" id="fyp-indirect-sm-l2" inputmode="numeric" placeholder="Ví dụ: 1.000.000.000" class="vnd-input-base">
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                </div>
-                            </div>
-                            <div id="sm-indirect-l3-col" class="hidden">
-                                <label class="input-label">FYP GT Lớp 3 (VNĐ)</label>
-                                <div class="relative">
-                                    <input type="text" id="fyp-indirect-sm-l3" inputmode="numeric" placeholder="Ví dụ: 500.000.000" class="vnd-input-base">
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SM+ Quarterly Bonus -->
-                    <div id="sm-quarter-section" class="mb-2 mt-4 p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
-                        <label class="personal-sales-toggle-base !mb-0 !bg-transparent !border-0 !p-0 cursor-pointer">
+                    <!-- Tab: SL+ -->
+                    <div id="tab-panel-sl" class="tab-panel hidden">
+                        <label class="personal-sales-toggle-base">
                             <div>
-                                <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Phí Khai Thác Quý (SM+)</div>
-                                <div class="text-xs text-slate-500 mt-0.5">Thưởng quý dựa trên FYP nhóm (Nhập để ước tính)</div>
+                                <div class="font-medium text-sm text-teal-900 dark:text-teal-200">Có phát sinh doanh số
+                                    cá nhân trong tháng?</div>
+                                <div class="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Nếu có, sẽ tính dồn thêm
+                                    FYC + Thưởng cá nhân</div>
                             </div>
                             <div class="relative flex items-center ml-4 shrink-0">
-                                <input type="checkbox" id="has-sm-quarter-bonus" class="peer sr-only">
+                                <input type="checkbox" id="has-personal-sales-sl" class="peer sr-only">
                                 <div class="toggle-track peer-checked:bg-teal-600"></div>
                             </div>
                         </label>
-                        <div id="sm-quarter-fields" class="hidden mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.05] space-y-3">
+                        <div
+                            class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-3 gap-1.5">
+                            <button class="role-btn role-btn-base" data-role="GSL">
+                                <span class="font-bold text-lg text-teal-700 dark:text-teal-400">G</span>
+                                <span class="font-medium text-sm">GSL</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Trưởng
+                                    nhóm</span>
+                            </button>
+                            <button class="role-btn role-btn-base" data-role="SSL">
+                                <span class="font-bold text-lg text-teal-700 dark:text-teal-400">S</span>
+                                <span class="font-medium text-sm">SSL</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Trưởng
+                                    ban</span>
+                            </button>
+                            <button class="role-btn role-btn-base" data-role="ESL">
+                                <span class="font-bold text-lg text-teal-700 dark:text-teal-400">E</span>
+                                <span class="font-medium text-sm">ESL</span>
+                                <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500">TB
+                                    cấp cao</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab: SM+ -->
+                    <div id="tab-panel-sm" class="tab-panel hidden">
+                        <label class="personal-sales-toggle-base">
                             <div>
+                                <div class="font-medium text-sm text-teal-900 dark:text-teal-200">Có phát sinh doanh số
+                                    cá nhân trong tháng?</div>
+                                <div class="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Nếu có, sẽ tính dồn thêm
+                                    FYC + Thưởng cá nhân</div>
+                            </div>
+                            <div class="relative flex items-center ml-4 shrink-0">
+                                <input type="checkbox" id="has-personal-sales-sm" class="peer sr-only">
+                                <div class="toggle-track peer-checked:bg-teal-600"></div>
+                            </div>
+                        </label>
+                        <div
+                            class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-4 gap-1.5">
+                            <button class="role-btn role-btn-base" data-role="SM"><span
+                                    class="font-medium text-sm">SM</span></button>
+                            <button class="role-btn role-btn-base" data-role="EM"><span
+                                    class="font-medium text-sm">EM</span></button>
+                            <button class="role-btn role-btn-base" data-role="ERM"><span
+                                    class="font-medium text-sm">ERM</span></button>
+                            <button class="role-btn role-btn-base" data-role="IRM"><span
+                                    class="font-medium text-sm">IRM</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Tỷ lệ K2 — Dropdown theo nhóm -->
+                    <div
+                        class="mt-4 p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
+                        <div class="flex items-center justify-between gap-3">
+                            <div>
+                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Tỷ lệ duy trì HĐ
+                                    (K2)</label>
+                                <div id="k2-subtitle" class="text-xs text-slate-500 mt-0.5">Hệ số K2 cá nhân — ảnh hưởng
+                                    đến Thưởng năng suất</div>
+                            </div>
+                            <select id="k2-rate"
+                                class="input-base min-w-[170px] w-auto font-semibold text-teal-700 dark:text-teal-400">
+                                <!-- Options được render động bởi JS theo role -->
+                            </select>
+                        </div>
+                        <div id="k2-coef-badge" class="mt-2 text-right text-xs text-slate-400"></div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Active Month -->
+                <div class="card-base">
+                    <h2 class="card-title"><i class="fa-regular fa-calendar-check text-teal-600 dark:text-teal-400"></i>
+                        Tháng Hoạt Động</h2>
+                    <div id="month-btn-group"
+                        class="flex flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="1">M1</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="2">M2</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="3">M3</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="4">M4</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="5-12">M5-M12</button>
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="13+">M13+</button>
+                    </div>
+                    <!-- SL month groups (role-specific, grouped for aesthetics & logic) -->
+                    <div id="gsl-month-btn-group"
+                        class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="1-9" data-group="gsl">M1 - M9</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="10-11" data-group="gsl">M10 - M11</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="12+" data-group="gsl">M12+</button>
+                    </div>
+                    <div id="ssl-month-btn-group"
+                        class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="1-11" data-group="ssl">M1 - M11</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="12" data-group="ssl">M12</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="13+" data-group="ssl">M13+</button>
+                    </div>
+                    <div id="esl-month-btn-group"
+                        class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="1-11" data-group="esl">M1 - M11</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="12-15" data-group="esl">M12 - M15</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="16+" data-group="esl">M16+</button>
+                    </div>
+                    <!-- SM+ month group -->
+                    <div id="sm-month-btn-group"
+                        class="hidden flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="1" data-group="sm">M1</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="2" data-group="sm">M2</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="3" data-group="sm">M3</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="4-12" data-group="sm">M4-M12</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="13+" data-group="sm">M13+</button>
+                    </div>
+                    <div id="starfc-month-btn-group"
+                        class="hidden flex flex-wrap bg-slate-100 dark:bg-slate-700 rounded-lg p-1 gap-1">
+                        <button class="month-btn active flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium"
+                            data-month="1">M1</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="2-7">M2-M7</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="8-13">M8-M13</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="14-19">M14-M19</button>
+                        <button
+                            class="month-btn flex-1 py-3 px-3 min-h-[44px] rounded-md text-sm font-medium dark:text-slate-300"
+                            data-month="20+">M20+</button>
+                    </div>
+                    <p id="month-hint" class="text-xs text-slate-400 dark:text-slate-500 mt-2 hidden"></p>
+                </div>
+
+                <!-- Card 3: Personal Metrics -->
+                <div class="card-base" id="personal-section">
+                    <h2 class="card-title"><i class="fa-solid fa-chart-line text-teal-600 dark:text-teal-400"></i> Chỉ
+                        Số Cá Nhân</h2>
+
+                    <!-- FYP -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-sm font-medium text-slate-700 dark:text-slate-300">FYP Cá Nhân</label>
+                            <div class="flex items-center gap-2">
+                                <span id="fyp-val-display"
+                                    class="text-teal-700 dark:text-teal-400 font-bold text-sm mr-1">30.000.000 ₫</span>
+                                <button id="fyp-mode-toggle" class="mode-toggle-btn">
+                                    <i id="fyp-mode-icon" class="fa-solid fa-sliders"></i>
+                                    <span id="fyp-mode-label">Thanh trượt</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Slider Mode -->
+                        <div id="fyp-slider-block">
+                            <input type="range" id="fyp-slider" min="0" max="200000000" value="30000000" step="1000000"
+                                class="range-input">
+                            <div class="flex justify-between mt-3 gap-2">
+                                <button class="fyp-quick-btn quick-btn-base" data-val="10000000">10 tr</button>
+                                <button class="fyp-quick-btn quick-btn-base" data-val="25000000">25 tr</button>
+                                <button class="fyp-quick-btn quick-btn-base" data-val="50000000">50 tr</button>
+                                <button class="fyp-quick-btn quick-btn-base" data-val="100000000">100 tr</button>
+                            </div>
+                        </div>
+                        <!-- Number Mode -->
+                        <div id="fyp-number-block" class="hidden">
+                            <div class="relative">
+                                <input type="text" id="fyp-number-input" inputmode="numeric"
+                                    placeholder="Ví dụ: 30.000.000" class="vnd-input-large">
+                                <span
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                            </div>
+                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5">Nhập số nguyên, hệ thống tự
+                                định dạng.</p>
+                        </div>
+                    </div>
+
+                    <!-- Star FC M1: Số Hợp Đồng -->
+                    <div id="star-fc-contracts-container"
+                        class="hidden mb-6 p-3 bg-teal-50 dark:bg-teal-950/20 rounded-xl border border-teal-200 dark:border-teal-800/30">
+                        <label class="input-label">Số Hợp Đồng Tháng (M1)</label>
+                        <p class="text-xs text-teal-600 dark:text-teal-400 mb-2">Dùng xác định mức hỗ trợ tháng 1 chương
+                            trình Ngôi Sao.</p>
+                        <input type="number" id="star-fc-contracts" min="0" max="20" value="3" class="input-base">
+                    </div>
+
+                    <!-- Star FC M14-M19: FYP từ ĐLBH giới thiệu -->
+                    <div id="star-fc-referral-fyp-container"
+                        class="hidden mb-6 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-xl border border-yellow-200 dark:border-yellow-800/30">
+                        <label class="input-label text-yellow-800 dark:text-yellow-300">FYP Từ ĐLBH Được Giới Thiệu
+                            (VNĐ)</label>
+                        <p class="text-xs text-yellow-600 dark:text-yellow-400 mb-2">Dùng xác định mức hỗ trợ giai đoạn
+                            M14–M19 (Bảng 5).</p>
+                        <div class="relative">
+                            <input type="text" id="star-fc-referral-fyp" inputmode="numeric"
+                                placeholder="Ví dụ: 60.000.000" class="vnd-input-base">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                        </div>
+                    </div>
+
+                    <!-- Thưởng Quý (FC/StarFC) -->
+                    <div id="fc-quarter-section" class="mt-6 border-t border-slate-200 dark:border-white/10 pt-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Thưởng Quý</div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="has-quarter-bonus" class="sr-only peer">
+                                <div
+                                    class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-500">
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="fc-quarter-fields"
+                            class="grid grid-cols-2 gap-4 hidden bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-white/5">
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">FYP Quý Cá nhân (VNĐ)</label>
+                                <input type="text" id="fyp-quarter-number" inputmode="numeric"
+                                    class="vnd-input-base text-sm py-2" placeholder="0">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">Số tháng HĐ</label>
+                                <select id="quarter-active-months" class="input-base text-sm py-2">
+                                    <option value="3">3 tháng (120%)</option>
+                                    <option value="2">2 tháng (100%)</option>
+                                    <option value="1">1 tháng (80%)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-4 mt-5">
+                        <div>
+                            <label class="block text-xs text-slate-500 mb-1">Tỷ lệ Hoa hồng (%)</label>
+                            <input type="number" id="fyc-rate" class="input-base" value="30">
+                        </div>
+                        <!-- AiTOM Grade -->
+                        <div id="aitom-container">
+                            <label class="input-label">AiTOM Grade</label>
+                            <div class="bg-slate-950/40 p-1.5 rounded-xl border border-white/[0.04] grid grid-cols-5 gap-1.5"
+                                id="aitom-btn-group">
+                                <button class="aitom-btn active" data-grade="S">S</button>
+                                <button class="aitom-btn" data-grade="A">A</button>
+                                <button class="aitom-btn" data-grade="B">B</button>
+                                <button class="aitom-btn" data-grade="C">C</button>
+                                <button class="aitom-btn" data-grade="D">D</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Team Metrics -->
+                <div class="card-base hidden fade-in" id="team-section">
+                    <h2 class="card-title"><i class="fa-solid fa-users text-teal-600 dark:text-teal-400"></i> Chỉ Số
+                        Nhóm / Ban</h2>
+
+                    <!-- SL Appointment type -->
+                    <div id="sl-appointment-row"
+                        class="hidden mb-4 flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Loại Bổ Nhiệm</label>
+                            <div class="text-xs text-slate-500">Chỉ áp dụng Phí Đào tạo cho Tuyển ngang</div>
+                        </div>
+                        <div class="flex bg-slate-200 dark:bg-slate-900 p-1 rounded-lg shrink-0"
+                            id="sl-appointment-toggles">
+                            <button class="appointment-btn active px-3 py-1.5 rounded-md text-xs font-semibold"
+                                data-type="lateral">Tuyển ngang</button>
+                            <button class="appointment-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-500"
+                                data-type="promotion">Thăng cấp</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== SM+ section (target completion at top) ===== -->
+                    <div id="sm-fields" class="hidden mb-5">
+                        <!-- Chỉ tiêu tháng - PROMINENT -->
+                        <div
+                            class="mb-4 p-4 bg-gradient-to-r from-teal-500/10 to-teal-600/5 rounded-xl border border-teal-300/40 dark:border-teal-600/30">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400 flex items-center gap-2 mb-3">
+                                <i class="fa-solid fa-bullseye"></i>
+                                Chỉ Tiêu Doanh Số Tháng
+                                <span class="text-[10px] bg-teal-500 text-white px-2 py-0.5 rounded-full font-bold">Tự
+                                    động</span>
+                            </label>
+                            <div class="relative">
+                                <input type="text" id="sm-target-number" readonly
+                                    class="w-full pl-5 pr-14 py-4 text-2xl font-extrabold tracking-wide min-h-[64px] rounded-xl text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-800 border-2 border-teal-400/50 dark:border-teal-500/40 focus:outline-none cursor-default">
+                                <span
+                                    class="absolute right-5 top-1/2 -translate-y-1/2 text-teal-500 dark:text-teal-400 font-bold text-lg">₫</span>
+                            </div>
+                        </div>
+
+                        <!-- 3-column: Tỷ lệ | Doanh số thực tế | Số lượt -->
+                        <div class="grid grid-cols-3 gap-3 mb-4">
+                            <div>
+                                <label class="input-label">Tỷ lệ HT (%)</label>
+                                <div class="relative">
+                                    <input type="number" id="sm-target-ratio" value="100"
+                                        class="input-base pr-8 font-bold text-teal-700 dark:text-teal-400">
+                                    <span class="absolute right-3 top-3.5 text-slate-400 text-xs">%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="input-label flex items-center justify-between">
+                                    DS Thực tế
+                                    <button id="sm-unlock-btn" title="Mở/Khóa sửa tay"
+                                        class="text-slate-400 hover:text-teal-500"><i id="sm-lock-icon"
+                                            class="fa-solid fa-lock text-xs"></i></button>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" id="sm-actual-number" inputmode="numeric" readonly
+                                        class="vnd-input-base !bg-slate-200 dark:!bg-slate-900/40 cursor-not-allowed font-bold text-teal-700 dark:text-teal-400 text-xs pl-2 pr-6">
+                                    <span
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 text-xs">₫</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="input-label">Số lượt HĐ</label>
+                                <div class="relative">
+                                    <input type="number" id="active-headcount-sm" value="5" min="1" max="999"
+                                        class="input-base pr-10 font-bold text-teal-700 dark:text-teal-400">
+                                    <span class="absolute right-3 top-3.5 text-slate-400 text-xs">lượt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tỷ lệ FYC SM+ -->
+                        <div class="mb-4">
+                            <label class="input-label">Tỷ lệ Hoa hồng FYC (%)</label>
+                            <div class="relative">
+                                <input type="number" id="fyc-rate-sm" value="30" class="input-base pr-8">
+                                <span class="absolute right-4 top-3.5 text-slate-400">%</span>
+                            </div>
+                        </div>
+
+                        <!-- FYP Nhóm TT (SM) -->
+                        <div class="mb-3">
+                            <label class="input-label">FYP Nhóm Trực Tiếp (VNĐ)</label>
+                            <div class="relative">
+                                <input type="text" id="fyp-team-direct-sm" inputmode="numeric"
+                                    placeholder="Ví dụ: 5.000.000.000" class="vnd-input-large">
+                                <span
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                            </div>
+                        </div>
+
+                        <!-- FYP GT layers (EM, ERM, IRM) -->
+                        <div id="sm-indirect-fields"
+                            class="space-y-3 p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800/30 mt-4">
+                            <p class="text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">
+                                Nhóm Gián Tiếp</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div id="sm-indirect-l1-col">
+                                    <label class="input-label">FYP GT Lớp 1 (VNĐ)</label>
+                                    <div class="relative">
+                                        <input type="text" id="fyp-indirect-sm-l1" inputmode="numeric"
+                                            placeholder="Ví dụ: 2.000.000.000" class="vnd-input-base">
+                                        <span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                    </div>
+                                </div>
+                                <div id="sm-indirect-l2-col" class="hidden">
+                                    <label class="input-label">FYP GT Lớp 2 (VNĐ)</label>
+                                    <div class="relative">
+                                        <input type="text" id="fyp-indirect-sm-l2" inputmode="numeric"
+                                            placeholder="Ví dụ: 1.000.000.000" class="vnd-input-base">
+                                        <span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                    </div>
+                                </div>
+                                <div id="sm-indirect-l3-col" class="hidden">
+                                    <label class="input-label">FYP GT Lớp 3 (VNĐ)</label>
+                                    <div class="relative">
+                                        <input type="text" id="fyp-indirect-sm-l3" inputmode="numeric"
+                                            placeholder="Ví dụ: 500.000.000" class="vnd-input-base">
+                                        <span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SM+ Quarterly Bonus -->
+                        <div id="sm-quarter-section"
+                            class="mb-2 mt-4 p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05]">
+                            <label
+                                class="personal-sales-toggle-base !mb-0 !bg-transparent !border-0 !p-0 cursor-pointer">
+                                <div>
+                                    <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Phí Khai
+                                        Thác Quý (SM+)</div>
+                                    <div class="text-xs text-slate-500 mt-0.5">Thưởng quý dựa trên FYP nhóm (Nhập để ước
+                                        tính)</div>
+                                </div>
+                                <div class="relative flex items-center ml-4 shrink-0">
+                                    <input type="checkbox" id="has-sm-quarter-bonus" class="peer sr-only">
+                                    <div class="toggle-track peer-checked:bg-teal-600"></div>
+                                </div>
+                            </label>
+                            <div id="sm-quarter-fields"
+                                class="hidden mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.05] space-y-3">
+                                <div>
+                                    <label class="input-label">FYP Nhóm TT Quý (VNĐ)</label>
+                                    <div class="relative">
+                                        <input type="text" id="fyp-team-quarter-sm-number" inputmode="numeric"
+                                            placeholder="Ví dụ: 1.000.000.000" class="vnd-input-base">
+                                        <span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                    </div>
+                                </div>
+                                <!-- GT Quý SM+ (cho EM, ERM, IRM) -->
+                                <div id="sm-quarter-indirect-fields" class="hidden">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div id="sm-quarter-l1-col">
+                                            <label class="input-label">FYP Nhóm GT L1 Quý (VNĐ)</label>
+                                            <div class="relative">
+                                                <input type="text" id="fyp-quarter-indirect-sm-l1" inputmode="numeric"
+                                                    placeholder="Ví dụ: 500.000.000" class="vnd-input-base">
+                                                <span
+                                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                            </div>
+                                        </div>
+                                        <div id="sm-quarter-l2-col" class="hidden">
+                                            <label class="input-label">FYP Nhóm GT L2 Quý (VNĐ)</label>
+                                            <div class="relative">
+                                                <input type="text" id="fyp-quarter-indirect-sm-l2" inputmode="numeric"
+                                                    placeholder="Ví dụ: 300.000.000" class="vnd-input-base">
+                                                <span
+                                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                            </div>
+                                        </div>
+                                        <div id="sm-quarter-l3-col" class="hidden">
+                                            <label class="input-label">FYP Nhóm GT L3 Quý (VNĐ)</label>
+                                            <div class="relative">
+                                                <input type="text" id="fyp-quarter-indirect-sm-l3" inputmode="numeric"
+                                                    placeholder="Ví dụ: 200.000.000" class="vnd-input-base">
+                                                <span
+                                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SL: FYP Nhóm TT + Số lượt (cùng hàng) ===== -->
+                    <div id="sl-team-direct-section" class="mb-5">
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <!-- FYP TT (SL) -->
+                            <div id="fyc-team-direct-container" class="col-span-2 sm:col-span-1">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-sm font-medium text-slate-700 dark:text-slate-300">FYP Nhóm Trực
+                                        Tiếp</label>
+                                    <div class="flex items-center gap-2">
+                                        <span id="fyc-team-direct-val"
+                                            class="text-teal-700 dark:text-teal-400 font-bold text-xs">100 tr</span>
+                                        <button id="team-direct-mode-toggle" class="mode-toggle-btn">
+                                            <i id="team-direct-mode-icon" class="fa-solid fa-sliders"></i>
+                                            <span id="team-direct-mode-label">Thanh trượt</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="team-direct-slider-block">
+                                    <input type="range" id="fyc-team-direct" min="0" max="500" value="100" step="5"
+                                        class="range-input">
+                                    <div class="flex justify-between mt-1 text-xs text-slate-400 dark:text-slate-500">
+                                        <span>0 tr</span><span>500 tr</span>
+                                    </div>
+                                </div>
+                                <div id="team-direct-number-block" class="hidden">
+                                    <div class="relative">
+                                        <input type="text" id="fyc-team-direct-number" inputmode="numeric"
+                                            placeholder="Ví dụ: 100.000.000" class="vnd-input-large">
+                                        <span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Số lượt (SL) -->
+                            <div id="active-headcount-row" class="col-span-2 sm:col-span-1 flex flex-col justify-end">
+                                <label class="input-label">Số lượt Hoạt Động</label>
+                                <div class="relative">
+                                    <input type="number" id="active-headcount" value="5" min="1" max="99"
+                                        class="input-base pr-10 font-bold text-teal-700 dark:text-teal-400">
+                                    <span class="absolute right-3 top-3.5 text-slate-400 text-xs">lượt</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="input-label">Tỷ lệ Hoa hồng FYC (%)</label>
+                            <div class="relative">
+                                <input type="number" id="fyc-rate-sl" value="30" class="input-base pr-8">
+                                <span class="absolute right-4 top-3.5 text-slate-400">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SL Indirect fields -->
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 mb-5 bg-indigo-50 dark:bg-indigo-950/20 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/30">
+                        <div id="indirect-l1-row" class="flex-1 hidden">
+                            <label class="input-label">FYP Gián Tiếp Lớp 1 (VNĐ)</label>
+                            <div class="relative">
+                                <input type="text" id="fyc-team-indirect-l1" inputmode="numeric"
+                                    placeholder="Ví dụ: 50.000.000" class="vnd-input-large">
+                                <span
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                            </div>
+                        </div>
+                        <div id="indirect-l2-row" class="flex-1 hidden">
+                            <label class="input-label">FYP Gián Tiếp Lớp 2 (VNĐ)</label>
+                            <div class="relative">
+                                <input type="text" id="fyc-team-indirect-l2" inputmode="numeric"
+                                    placeholder="Ví dụ: 30.000.000" class="vnd-input-large">
+                                <span
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SL Quarterly Bonus (below team direct) -->
+                    <div id="sl-quarter-section"
+                        class="mb-5 p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05] hidden">
+                        <label class="personal-sales-toggle-base !mb-0 !bg-transparent !border-0 !p-0 cursor-pointer">
+                            <div>
+                                <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Phí Khai Thác
+                                    Quý</div>
+                                <div class="text-xs text-slate-500 mt-0.5">Tính phí khai thác dựa trên FYP nhóm quý
+                                </div>
+                            </div>
+                            <div class="relative flex items-center ml-4 shrink-0">
+                                <input type="checkbox" id="has-sl-quarter-bonus" class="peer sr-only">
+                                <div class="toggle-track peer-checked:bg-teal-600"></div>
+                            </div>
+                        </label>
+                        <div id="sl-quarter-fields"
+                            class="hidden mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.05] grid grid-cols-2 gap-4">
+                            <div id="sl-quarter-direct-col" class="col-span-2">
                                 <label class="input-label">FYP Nhóm TT Quý (VNĐ)</label>
                                 <div class="relative">
-                                    <input type="text" id="fyp-team-quarter-sm-number" inputmode="numeric" placeholder="Ví dụ: 1.000.000.000" class="vnd-input-base">
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                    <input type="text" id="fyp-team-quarter-number" inputmode="numeric"
+                                        placeholder="Ví dụ: 300.000.000" class="vnd-input-base">
+                                    <span
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
                                 </div>
                             </div>
-                            <!-- GT Quý SM+ (cho EM, ERM, IRM) -->
-                            <div id="sm-quarter-indirect-fields" class="hidden">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div id="sm-quarter-l1-col">
-                                    <label class="input-label">FYP Nhóm GT L1 Quý (VNĐ)</label>
-                                    <div class="relative">
-                                        <input type="text" id="fyp-quarter-indirect-sm-l1" inputmode="numeric" placeholder="Ví dụ: 500.000.000" class="vnd-input-base">
-                                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                    </div>
-                                </div>
-                                <div id="sm-quarter-l2-col" class="hidden">
-                                    <label class="input-label">FYP Nhóm GT L2 Quý (VNĐ)</label>
-                                    <div class="relative">
-                                        <input type="text" id="fyp-quarter-indirect-sm-l2" inputmode="numeric" placeholder="Ví dụ: 300.000.000" class="vnd-input-base">
-                                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                    </div>
-                                </div>
-                                <div id="sm-quarter-l3-col" class="hidden">
-                                    <label class="input-label">FYP Nhóm GT L3 Quý (VNĐ)</label>
-                                    <div class="relative">
-                                        <input type="text" id="fyp-quarter-indirect-sm-l3" inputmode="numeric" placeholder="Ví dụ: 200.000.000" class="vnd-input-base">
-                                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== SL: FYP Nhóm TT + Số lượt (cùng hàng) ===== -->
-                <div id="sl-team-direct-section" class="mb-5">
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <!-- FYP TT (SL) -->
-                        <div id="fyc-team-direct-container" class="col-span-2 sm:col-span-1">
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">FYP Nhóm Trực Tiếp</label>
-                                <div class="flex items-center gap-2">
-                                    <span id="fyc-team-direct-val" class="text-teal-700 dark:text-teal-400 font-bold text-xs">100 tr</span>
-                                    <button id="team-direct-mode-toggle" class="mode-toggle-btn">
-                                        <i id="team-direct-mode-icon" class="fa-solid fa-sliders"></i>
-                                        <span id="team-direct-mode-label">Thanh trượt</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="team-direct-slider-block">
-                                <input type="range" id="fyc-team-direct" min="0" max="500" value="100" step="5" class="range-input">
-                                <div class="flex justify-between mt-1 text-xs text-slate-400 dark:text-slate-500">
-                                    <span>0 tr</span><span>500 tr</span>
-                                </div>
-                            </div>
-                            <div id="team-direct-number-block" class="hidden">
+                            <div class="hidden" id="fyc-team-indirect-l1-quarter-col">
+                                <label class="input-label">FYP GT L1 Quý (VNĐ)</label>
                                 <div class="relative">
-                                    <input type="text" id="fyc-team-direct-number" inputmode="numeric" placeholder="Ví dụ: 100.000.000" class="vnd-input-large">
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
+                                    <input type="text" id="fyc-team-indirect-l1-quarter" inputmode="numeric"
+                                        placeholder="Ví dụ: 50.000.000" class="vnd-input-base">
+                                    <span
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+                                </div>
+                            </div>
+                            <div class="hidden" id="fyc-team-indirect-l2-quarter-col">
+                                <label class="input-label">FYP GT L2 Quý (VNĐ)</label>
+                                <div class="relative">
+                                    <input type="text" id="fyc-team-indirect-l2-quarter" inputmode="numeric"
+                                        placeholder="Ví dụ: 30.000.000" class="vnd-input-base">
+                                    <span
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
                                 </div>
                             </div>
                         </div>
-                        <!-- Số lượt (SL) -->
-                        <div id="active-headcount-row" class="col-span-2 sm:col-span-1 flex flex-col justify-end">
-                            <label class="input-label">Số lượt Hoạt Động</label>
-                            <div class="relative">
-                                <input type="number" id="active-headcount" value="5" min="1" max="99" class="input-base pr-10 font-bold text-teal-700 dark:text-teal-400">
-                                <span class="absolute right-3 top-3.5 text-slate-400 text-xs">lượt</span>
-                            </div>
-                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="input-label">Tỷ lệ Hoa hồng FYC (%)</label>
-                        <div class="relative">
-                            <input type="number" id="fyc-rate-sl" value="30" class="input-base pr-8">
-                            <span class="absolute right-4 top-3.5 text-slate-400">%</span>
+
+                </div>
+
+                <!-- Card 5: Perks -->
+                <div class="card-base" id="perks-section">
+                    <h2 class="card-title"><i class="fa-solid fa-gift text-teal-600 dark:text-teal-400"></i> Danh Hiệu
+                        &amp; Thưởng Thêm</h2>
+                    <div class="space-y-3">
+                        <div class="perk-row-base">
+                            <div class="flex-1 pr-2">
+                                <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Shinhan Partner
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Thưởng thêm % trên FYC tháng
+                                </div>
+                            </div>
+                            <select id="partner-level" class="input-base min-w-[150px] w-auto">
+                                <option value="none">Không</option>
+                                <option value="G">G-Partner (+10%)</option>
+                                <option value="S">S-Partner (+15%)</option>
+                                <option value="E">E-Partner (+20%)</option>
+                            </select>
                         </div>
+                        <label class="perk-row-base cursor-pointer">
+                            <div>
+                                <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Đạt mốc MDRT Quý
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Ước tính thưởng TB 5tr/tháng
+                                </div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <input type="checkbox" id="mdrt-check" class="peer sr-only">
+                                <div class="toggle-track peer-checked:bg-teal-600"></div>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
-                <!-- SL Indirect fields -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-5 bg-indigo-50 dark:bg-indigo-950/20 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/30">
-                    <div id="indirect-l1-row" class="flex-1 hidden">
-                        <label class="input-label">FYP Gián Tiếp Lớp 1 (VNĐ)</label>
-                        <div class="relative">
-                            <input type="text" id="fyc-team-indirect-l1" inputmode="numeric" placeholder="Ví dụ: 50.000.000" class="vnd-input-large">
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
-                        </div>
-                    </div>
-                    <div id="indirect-l2-row" class="flex-1 hidden">
-                        <label class="input-label">FYP Gián Tiếp Lớp 2 (VNĐ)</label>
-                        <div class="relative">
-                            <input type="text" id="fyc-team-indirect-l2" inputmode="numeric" placeholder="Ví dụ: 30.000.000" class="vnd-input-large">
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 font-medium">₫</span>
-                        </div>
-                    </div>
+                <!-- Card 6: Khoản Thưởng Khác -->
+                <div class="card-base">
+                    <h2 class="card-title"><i
+                            class="fa-solid fa-circle-plus text-emerald-600 dark:text-emerald-400"></i> Khoản Thưởng
+                        Khác (Nếu có)</h2>
+                    <p class="text-xs text-slate-400 dark:text-slate-500 mb-4">Áp dụng cho tất cả chức danh. Số tiền sẽ
+                        được cộng trực tiếp vào Tổng Thu Nhập.</p>
+                    <div id="extra-bonus-list" class="space-y-3 mb-4"></div>
+                    <button id="add-bonus-btn"
+                        class="w-full py-3 rounded-xl border-2 border-dashed border-teal-500/30 text-teal-400 text-sm font-semibold hover:bg-teal-950/20 transition-all flex items-center justify-center gap-2 group">
+                        <i class="fa-solid fa-plus transition-transform group-hover:rotate-90 duration-200"></i> Thêm
+                        khoản thưởng
+                    </button>
                 </div>
 
-                <!-- SL Quarterly Bonus (below team direct) -->
-                <div id="sl-quarter-section" class="mb-5 p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-white/[0.05] hidden">
-                    <label class="personal-sales-toggle-base !mb-0 !bg-transparent !border-0 !p-0 cursor-pointer">
-                        <div>
-                            <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Tính Phí Khai Thác Quý</div>
-                            <div class="text-xs text-slate-500 mt-0.5">Tính phí khai thác dựa trên FYP nhóm quý</div>
-                        </div>
-                        <div class="relative flex items-center ml-4 shrink-0">
-                            <input type="checkbox" id="has-sl-quarter-bonus" class="peer sr-only">
-                            <div class="toggle-track peer-checked:bg-teal-600"></div>
-                        </div>
-                    </label>
-                    <div id="sl-quarter-fields" class="hidden mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.05] grid grid-cols-2 gap-4">
-                        <div id="sl-quarter-direct-col" class="col-span-2">
-                            <label class="input-label">FYP Nhóm TT Quý (VNĐ)</label>
-                            <div class="relative">
-                                <input type="text" id="fyp-team-quarter-number" inputmode="numeric" placeholder="Ví dụ: 300.000.000" class="vnd-input-base">
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
+            </div><!-- End Left Column -->
+
+            <!-- ===== RIGHT COLUMN (5/12) ===== -->
+            <div class="w-full lg:col-span-5 lg:sticky lg:top-8">
+                <div>
+                    <!-- Phone Mockup -->
+                    <div id="phone-mockup"
+                        class="relative mx-auto max-w-[365px] w-full border-0 md:border-[10px] border-slate-950 dark:border-slate-700 rounded-none md:rounded-[50px] bg-slate-950 dark:bg-slate-800 shadow-none md:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] ring-0 md:ring-1 ring-white/10 overflow-hidden transition-colors duration-300">
+
+                        <!-- Status Bar -->
+                        <div
+                            class="absolute top-0 left-0 right-0 pt-4 px-6 pb-2 h-12 flex justify-between items-center z-20 text-white text-xs hidden md:flex">
+                            <div class="font-sans tracking-tight font-medium text-white/90">9:41</div>
+                            <div class="space-x-1.5 flex items-center text-white/90">
+                                <i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i
+                                    class="fa-solid fa-battery-three-quarters text-sm"></i>
                             </div>
                         </div>
-                        <div class="hidden" id="fyc-team-indirect-l1-quarter-col">
-                            <label class="input-label">FYP GT L1 Quý (VNĐ)</label>
-                            <div class="relative">
-                                <input type="text" id="fyc-team-indirect-l1-quarter" inputmode="numeric" placeholder="Ví dụ: 50.000.000" class="vnd-input-base">
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                            </div>
+                        <!-- Dynamic Island -->
+                        <div
+                            class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 hidden md:flex items-center justify-between px-3">
+                            <div class="w-1.5 h-1.5 bg-transparent"></div>
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                         </div>
-                        <div class="hidden" id="fyc-team-indirect-l2-quarter-col">
-                            <label class="input-label">FYP GT L2 Quý (VNĐ)</label>
-                            <div class="relative">
-                                <input type="text" id="fyc-team-indirect-l2-quarter" inputmode="numeric" placeholder="Ví dụ: 30.000.000" class="vnd-input-base">
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">₫</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Card 5: Perks -->
-            <div class="card-base" id="perks-section">
-                <h2 class="card-title"><i class="fa-solid fa-gift text-teal-600 dark:text-teal-400"></i> Danh Hiệu &amp; Thưởng Thêm</h2>
-                <div class="space-y-3">
-                    <div class="perk-row-base">
-                        <div class="flex-1 pr-2">
-                            <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Shinhan Partner</div>
-                            <div class="text-xs text-slate-500 dark:text-slate-400">Thưởng thêm % trên FYC tháng</div>
-                        </div>
-                        <select id="partner-level" class="input-base min-w-[150px] w-auto">
-                            <option value="none">Không</option>
-                            <option value="G">G-Partner (+10%)</option>
-                            <option value="S">S-Partner (+15%)</option>
-                            <option value="E">E-Partner (+20%)</option>
-                        </select>
-                    </div>
-                    <label class="perk-row-base cursor-pointer">
-                        <div>
-                            <div class="font-medium text-sm text-slate-800 dark:text-slate-200">Đạt mốc MDRT Quý</div>
-                            <div class="text-xs text-slate-500 dark:text-slate-400">Ước tính thưởng TB 5tr/tháng</div>
-                        </div>
-                        <div class="relative flex items-center">
-                            <input type="checkbox" id="mdrt-check" class="peer sr-only">
-                            <div class="toggle-track peer-checked:bg-teal-600"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Card 6: Khoản Thưởng Khác -->
-            <div class="card-base">
-                <h2 class="card-title"><i class="fa-solid fa-circle-plus text-emerald-600 dark:text-emerald-400"></i> Khoản Thưởng Khác (Nếu có)</h2>
-                <p class="text-xs text-slate-400 dark:text-slate-500 mb-4">Áp dụng cho tất cả chức danh. Số tiền sẽ được cộng trực tiếp vào Tổng Thu Nhập.</p>
-                <div id="extra-bonus-list" class="space-y-3 mb-4"></div>
-                <button id="add-bonus-btn"
-                    class="w-full py-3 rounded-xl border-2 border-dashed border-teal-500/30 text-teal-400 text-sm font-semibold hover:bg-teal-950/20 transition-all flex items-center justify-center gap-2 group">
-                    <i class="fa-solid fa-plus transition-transform group-hover:rotate-90 duration-200"></i> Thêm khoản thưởng
-                </button>
-            </div>
-
-        </div><!-- End Left Column -->
-
-        <!-- ===== RIGHT COLUMN (5/12) ===== -->
-        <div class="w-full lg:col-span-5 lg:sticky lg:top-8">
-            <div>
-                <!-- Phone Mockup -->
-                <div id="phone-mockup" class="relative mx-auto max-w-[365px] w-full border-0 md:border-[10px] border-slate-950 dark:border-slate-700 rounded-none md:rounded-[50px] bg-slate-950 dark:bg-slate-800 shadow-none md:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] ring-0 md:ring-1 ring-white/10 overflow-hidden transition-colors duration-300">
-
-                    <!-- Status Bar -->
-                    <div class="absolute top-0 left-0 right-0 pt-4 px-6 pb-2 h-12 flex justify-between items-center z-20 text-white text-xs hidden md:flex">
-                        <div class="font-sans tracking-tight font-medium text-white/90">9:41</div>
-                        <div class="space-x-1.5 flex items-center text-white/90">
-                            <i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-three-quarters text-sm"></i>
-                        </div>
-                    </div>
-                    <!-- Dynamic Island -->
-                    <div class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 hidden md:flex items-center justify-between px-3">
-                        <div class="w-1.5 h-1.5 bg-transparent"></div>
-                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                    </div>
-                    <!-- Home Indicator -->
-                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/25 rounded-full z-30 hidden md:block"></div>
-
-                    <!-- Phone Screen -->
-                    <div id="phone-screen" class="phone-screen w-full h-[720px] md:h-[720px] overflow-y-auto scroll-smooth flex flex-col p-5 pt-14 pb-8 space-y-4 rounded-none md:rounded-[40px] bg-gradient-to-tr from-slate-950 via-teal-950 to-emerald-950 dark:from-slate-800 dark:via-teal-900 dark:to-emerald-900 relative transition-colors duration-300">
-
-                        <!-- FYP Summary Card (#11) -->
-                        <div id="fyp-summary-card" class="bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-4 shadow-[0_4px_16px_0_rgba(0,0,0,0.3)] text-white">
-                            <h3 class="text-teal-300/70 uppercase tracking-widest text-[10px] font-bold mb-3">
-                                <i class="fa-solid fa-chart-column mr-1"></i> Tổng Hợp Doanh Số FYP
-                            </h3>
-                            <div id="fyp-summary-rows" class="space-y-1.5 text-xs">
-                                <!-- Rendered dynamically by JS -->
-                            </div>
+                        <!-- Home Indicator -->
+                        <div
+                            class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/25 rounded-full z-30 hidden md:block">
                         </div>
 
-                        <!-- Main Result Card -->
-                        <div class="bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white">
-                            <h3 id="result-title" class="text-teal-300/70 uppercase tracking-widest text-[10px] font-bold mb-2">Tổng Thu Nhập Ước Tính (FC)</h3>
-                            <div class="flex items-baseline gap-2 mb-1">
-                                <span id="total-income" class="text-yellow-400 font-extrabold text-3xl tracking-tight transition-all duration-300">0</span>
-                                <span class="text-xl text-teal-200">VNĐ</span>
-                            </div>
-                            <div class="text-sm text-teal-400/80 mb-4">/ tháng</div>
+                        <!-- Phone Screen -->
+                        <div id="phone-screen"
+                            class="phone-screen w-full h-[720px] md:h-[720px] overflow-y-auto scroll-smooth flex flex-col p-5 pt-14 pb-8 space-y-4 rounded-none md:rounded-[40px] bg-gradient-to-tr from-slate-950 via-teal-950 to-emerald-950 dark:from-slate-800 dark:via-teal-900 dark:to-emerald-900 relative transition-colors duration-300">
 
-                            <!-- Breakdown rows -->
-                            <div id="breakdown-rows" class="pt-2 text-sm space-y-0">
-
-                                <div class="breakdown-row" id="row-fyc" data-key="fyc">
-                                    <button class="eye-btn" data-key="fyc" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Hoa hồng cơ bản (FYC)</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-fyc">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-bonus-month" data-key="bonusMonth">
-                                    <button class="eye-btn" data-key="bonusMonth" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Thưởng năng suất tháng</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-bonus-month">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-bonus-quarter" data-key="bonusQuarter">
-                                    <button class="eye-btn" data-key="bonusQuarter" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Thưởng quý (BQ/tháng)</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-bonus-quarter">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-star-support" data-key="starSupport">
-                                    <button class="eye-btn" data-key="starSupport" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Hỗ trợ tài chính Ngôi sao</span>
-                                    <span class="breakdown-val text-yellow-400 font-semibold" id="val-star-support">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mgmt-training" data-key="mgmtTraining">
-                                    <button class="eye-btn" data-key="mgmtTraining" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Phí đào tạo đội ngũ</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-mgmt-training">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mgmt-direct" data-key="mgmtDirect">
-                                    <button class="eye-btn" data-key="mgmtDirect" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1" id="lbl-mgmt-direct">Phí khai thác trực tiếp tháng</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-mgmt-direct">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mgmt-quarter" data-key="mgmtQuarter">
-                                    <button class="eye-btn" data-key="mgmtQuarter" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Phí khai thác Quý (BQ/tháng)</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-mgmt-quarter">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mgmt-indirect" data-key="mgmtIndirect">
-                                    <button class="eye-btn" data-key="mgmtIndirect" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Phí khai thác gián tiếp L1/L2</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-mgmt-indirect">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mgmt-indirect-sm" data-key="mgmtIndirectSm">
-                                    <button class="eye-btn" data-key="mgmtIndirectSm" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Phí quản lý nhóm gián tiếp</span>
-                                    <span class="breakdown-val text-emerald-400 font-semibold" id="val-mgmt-indirect-sm">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-partner" data-key="partner">
-                                    <button class="eye-btn" data-key="partner" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Thưởng Shinhan Partner</span>
-                                    <span class="breakdown-val text-yellow-400 font-semibold" id="val-partner">0</span>
-                                </div>
-                                <div class="breakdown-row hidden" id="row-mdrt" data-key="mdrt">
-                                    <button class="eye-btn" data-key="mdrt" title="Ẩn/hiện khoản này"><i class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
-                                    <span class="text-slate-300 flex-1">Thưởng tiến độ MDRT (BQ)</span>
-                                    <span class="breakdown-val text-yellow-400 font-semibold" id="val-mdrt">0</span>
-                                </div>
-
-                                <div id="extra-bonus-phone-rows"></div>
-
-                                <div id="hidden-breakdown-container" class="mt-4 pt-4 border-t border-white/[0.1] hidden">
-                                    <button id="toggle-hidden-breakdown" class="w-full text-xs text-teal-400/80 mb-2 flex items-center justify-between p-2 rounded hover:bg-white/[0.05] transition-colors">
-                                        <span><i class="fa-solid fa-eye-slash mr-1"></i> Các khoản đã ẩn (<span id="hidden-count">0</span>)</span>
-                                        <i class="fa-solid fa-chevron-down transition-transform duration-200" id="hidden-chevron"></i>
-                                    </button>
-                                    <div id="hidden-rows-list" class="space-y-0 hidden"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Chart Toggle for Mobile -->
-                        <button id="toggle-chart-btn" class="w-full py-3 mt-4 mb-2 bg-white/5 border border-white/10 rounded-xl text-teal-300 text-sm font-semibold flex items-center justify-center gap-2 mt-auto shrink-0 z-10 relative lg:hidden hover:bg-white/10 transition-colors">
-                            <i class="fa-solid fa-chart-line"></i> Xem biểu đồ Tăng Trưởng
-                        </button>
-
-                        <!-- Chart Card -->
-                        <div id="chart-card" class="hidden lg:block bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white mt-auto shrink-0 z-10 relative">
-                            <div class="flex justify-between items-center mb-6">
-                                <h3 class="font-medium text-teal-100 flex items-center gap-2 text-sm">
-                                    <i class="fa-solid fa-chart-area"></i> Tăng Trưởng
+                            <!-- FYP Summary Card (#11) -->
+                            <div id="fyp-summary-card"
+                                class="bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-4 shadow-[0_4px_16px_0_rgba(0,0,0,0.3)] text-white">
+                                <h3 class="text-teal-300/70 uppercase tracking-widest text-[10px] font-bold mb-3">
+                                    <i class="fa-solid fa-chart-column mr-1"></i> Tổng Hợp Doanh Số FYP
                                 </h3>
-                                <span class="text-[9px] text-teal-400 bg-teal-950/50 px-2 py-1 rounded uppercase tracking-wider font-semibold border border-teal-800/50">Theo FYP</span>
+                                <div id="fyp-summary-rows" class="space-y-1.5 text-xs">
+                                    <!-- Rendered dynamically by JS -->
+                                </div>
                             </div>
-                            <div class="relative h-40 w-full">
-                                <canvas id="incomeChart"></canvas>
+
+                            <!-- Main Result Card -->
+                            <div
+                                class="bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white">
+                                <h3 id="result-title"
+                                    class="text-teal-300/70 uppercase tracking-widest text-[10px] font-bold mb-2">Tổng
+                                    Thu Nhập Ước Tính (FC)</h3>
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span id="total-income"
+                                        class="text-yellow-400 font-extrabold text-3xl tracking-tight transition-all duration-300">0</span>
+                                    <span class="text-xl text-teal-200">VNĐ</span>
+                                </div>
+                                <div class="text-sm text-teal-400/80 mb-4">/ tháng</div>
+
+                                <!-- Breakdown rows -->
+                                <div id="breakdown-rows" class="pt-2 text-sm space-y-0">
+
+                                    <div class="breakdown-row" id="row-fyc" data-key="fyc">
+                                        <button class="eye-btn" data-key="fyc" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Hoa hồng cơ bản (FYC)</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold" id="val-fyc">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-bonus-month" data-key="bonusMonth">
+                                        <button class="eye-btn" data-key="bonusMonth" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Thưởng năng suất tháng</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-bonus-month">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-bonus-quarter" data-key="bonusQuarter">
+                                        <button class="eye-btn" data-key="bonusQuarter" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Thưởng quý (BQ/tháng)</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-bonus-quarter">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-star-support" data-key="starSupport">
+                                        <button class="eye-btn" data-key="starSupport" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Hỗ trợ tài chính Ngôi sao</span>
+                                        <span class="breakdown-val text-yellow-400 font-semibold"
+                                            id="val-star-support">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mgmt-training" data-key="mgmtTraining">
+                                        <button class="eye-btn" data-key="mgmtTraining" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Phí đào tạo đội ngũ</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-mgmt-training">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mgmt-direct" data-key="mgmtDirect">
+                                        <button class="eye-btn" data-key="mgmtDirect" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1" id="lbl-mgmt-direct">Phí khai thác trực tiếp
+                                            tháng</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-mgmt-direct">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mgmt-quarter" data-key="mgmtQuarter">
+                                        <button class="eye-btn" data-key="mgmtQuarter" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Phí khai thác Quý (BQ/tháng)</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-mgmt-quarter">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mgmt-indirect" data-key="mgmtIndirect">
+                                        <button class="eye-btn" data-key="mgmtIndirect" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Phí khai thác gián tiếp L1/L2</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-mgmt-indirect">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mgmt-indirect-sm"
+                                        data-key="mgmtIndirectSm">
+                                        <button class="eye-btn" data-key="mgmtIndirectSm" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Phí quản lý nhóm gián tiếp</span>
+                                        <span class="breakdown-val text-emerald-400 font-semibold"
+                                            id="val-mgmt-indirect-sm">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-partner" data-key="partner">
+                                        <button class="eye-btn" data-key="partner" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Thưởng Shinhan Partner</span>
+                                        <span class="breakdown-val text-yellow-400 font-semibold"
+                                            id="val-partner">0</span>
+                                    </div>
+                                    <div class="breakdown-row hidden" id="row-mdrt" data-key="mdrt">
+                                        <button class="eye-btn" data-key="mdrt" title="Ẩn/hiện khoản này"><i
+                                                class="fa-regular fa-eye text-teal-400/60 hover:text-teal-300 transition-colors"></i></button>
+                                        <span class="text-slate-300 flex-1">Thưởng tiến độ MDRT (BQ)</span>
+                                        <span class="breakdown-val text-yellow-400 font-semibold" id="val-mdrt">0</span>
+                                    </div>
+
+                                    <div id="extra-bonus-phone-rows"></div>
+
+                                    <div id="hidden-breakdown-container"
+                                        class="mt-4 pt-4 border-t border-white/[0.1] hidden">
+                                        <button id="toggle-hidden-breakdown"
+                                            class="w-full text-xs text-teal-400/80 mb-2 flex items-center justify-between p-2 rounded hover:bg-white/[0.05] transition-colors">
+                                            <span><i class="fa-solid fa-eye-slash mr-1"></i> Các khoản đã ẩn (<span
+                                                    id="hidden-count">0</span>)</span>
+                                            <i class="fa-solid fa-chevron-down transition-transform duration-200"
+                                                id="hidden-chevron"></i>
+                                        </button>
+                                        <div id="hidden-rows-list" class="space-y-0 hidden"></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                    </div><!-- End Phone Screen -->
-                </div><!-- End Phone Mockup -->
-            </div>
-        </div><!-- End Right Column -->
+                            <!-- Chart Toggle for Mobile -->
+                            <button id="toggle-chart-btn"
+                                class="w-full py-3 mt-4 mb-2 bg-white/5 border border-white/10 rounded-xl text-teal-300 text-sm font-semibold flex items-center justify-center gap-2 mt-auto shrink-0 z-10 relative lg:hidden hover:bg-white/10 transition-colors">
+                                <i class="fa-solid fa-chart-line"></i> Xem biểu đồ Tăng Trưởng
+                            </button>
 
-    </div>
-</main><!-- End Container -->
+                            <!-- Chart Card -->
+                            <div id="chart-card"
+                                class="hidden lg:block bg-white/[0.04] backdrop-blur-lg border border-white/[0.06] rounded-2xl p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white mt-auto shrink-0 z-10 relative">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="font-medium text-teal-100 flex items-center gap-2 text-sm">
+                                        <i class="fa-solid fa-chart-area"></i> Tăng Trưởng
+                                    </h3>
+                                    <span
+                                        class="text-[9px] text-teal-400 bg-teal-950/50 px-2 py-1 rounded uppercase tracking-wider font-semibold border border-teal-800/50">Theo
+                                        FYP</span>
+                                </div>
+                                <div class="relative h-40 w-full">
+                                    <canvas id="incomeChart"></canvas>
+                                </div>
+                            </div>
 
-<script src="./js/chart-config.js"></script>
-<script type="module" src="./js/app.js"></script>
+                        </div><!-- End Phone Screen -->
+                    </div><!-- End Phone Mockup -->
+                </div>
+            </div><!-- End Right Column -->
+
+        </div>
+    </main><!-- End Container -->
+
+    <script src="./js/chart-config.js"></script>
+    <script type="module" src="./js/app.js"></script>
 </body>
+
 </html>

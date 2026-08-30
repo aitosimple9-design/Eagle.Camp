@@ -144,7 +144,10 @@ export function calculateIncome(state, overrideFypMillions = null) {
             fypMil,
             fycRate,
             k2Coef,
+            k2Bracket: state.k2Bracket,
             aitom: state.aitom,
+            partner: state.partner,
+            mdrt: state.mdrt,
             hasQuarterBonus: state.hasQuarterBonus && (isAgent || state.hasPersonalSales),
             fypQuarterRaw: state.fypQuarter,
             quarterActiveMonths: state.quarterActiveMonths,
@@ -158,8 +161,10 @@ export function calculateIncome(state, overrideFypMillions = null) {
         breakdown.bonusMonth = personal.bonusMonth;
         breakdown.bonusQuarter = personal.bonusQuarter;
         breakdown.starSupport = personal.starSupport;
+        breakdown.partner = personal.partner;
+        breakdown.mdrt = personal.mdrt;
 
-        total += breakdown.fyc + breakdown.bonusMonth + breakdown.bonusQuarter + breakdown.starSupport;
+        total += breakdown.fyc + breakdown.bonusMonth + breakdown.bonusQuarter + breakdown.starSupport + breakdown.partner + breakdown.mdrt;
     }
 
     // ======================================================
@@ -227,21 +232,7 @@ export function calculateIncome(state, overrideFypMillions = null) {
             + breakdown.mgmtIndirectSm + breakdown.mgmtQuarter;
     }
 
-    // ======================================================
-    // Shinhan Partner (chỉ FC, K2 >= 70%)
-    // ======================================================
-    const partnerK2Met = ['70-80', '80+'].includes(state.k2Bracket);
-    if (state.partner !== 'none' && partnerK2Met) {
-        const pRate = { G: 0.10, S: 0.15, E: 0.20 }[state.partner] || 0;
-        const fypMilP = safeNum(state.fyp) / 1_000_000;
-        breakdown.partner = roundMil(fypMilP * (safeNum(state.fycRate) / 100) * pRate);
-        total += breakdown.partner;
-    }
-
-    // MDRT
-    if (state.mdrt) { breakdown.mdrt = 5.0; total += breakdown.mdrt; }
-
-    // Extra bonuses
+    // Các khoản thưởng khác (mặc định là tháng, phân bổ dựa vào Loại)
     let extraTotal = 0;
     if (Array.isArray(state.extraBonuses)) {
         state.extraBonuses.forEach(b => {

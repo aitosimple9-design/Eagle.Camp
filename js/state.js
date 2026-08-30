@@ -14,10 +14,10 @@ const globalState = {
     monthMode: '13+',
 
     // ---- FC / StarFC: Cá nhân ----
-    fyp: 30000000,           // VND raw (doanh số cá nhân)
-    fycRate: 30,             // % hoa hồng cá nhân (mặc định 30%)
+    fyp: 25000000,           // VND raw (doanh số cá nhân)
+    fycRate: 25,             // % hoa hồng cá nhân (mặc định 30%)
     k2Bracket: '80+',        // Mức K2 đang chọn trong dropdown
-    aitom: 'S',              // S, A, B, C, D
+    aitom: 'A',              // S, A, B, C, D
 
     // ---- FC: Thưởng quý ----
     hasQuarterBonus: false,
@@ -32,7 +32,7 @@ const globalState = {
     slAppointmentType: 'lateral', // 'lateral' | 'promotion'
     activeHeadcount: 5,           // Số lượt hoạt động nhóm TT (SL)
     fycTeamDirect: 100,           // FYP nhóm TT SL (triệu) — giữ key cũ
-    fycRateSl: 30,                // % tỷ lệ FYC nhóm SL
+    fycRateSl: 25,                // % tỷ lệ FYC nhóm SL
     fycTeamIndirectL1: 0,         // FYP GT L1 SL (triệu)
     fycTeamIndirectL2: 0,         // FYP GT L2 SL (triệu)
 
@@ -49,7 +49,7 @@ const globalState = {
     smTargetModeUnlocked: false,    // true = nhập thực tế trực tiếp
 
     activeHeadcountSm: 5,           // Số lượt hoạt động SM+
-    fycRateSm: 30,                  // % tỷ lệ FYC nhóm SM+
+    fycRateSm: 25,                  // % tỷ lệ FYC nhóm SM+
     fypTeamDirectSm: 0,             // FYP nhóm TT SM+ (VND raw)
     fypIndirectSmL1: 0,             // FYP GT L1 SM+ (VND raw)
     fypIndirectSmL2: 0,             // FYP GT L2 SM+ (VND raw)
