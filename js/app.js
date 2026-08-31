@@ -4,6 +4,14 @@
 // Không chứa bất kỳ công thức tính toán nào.
 // ============================================================
 import {
+    getCurrentUserTitle,
+    getAllowedRoles,
+    getAllowedTabs,
+    getDefaultRole,
+    isRoleAllowed
+} from './permissions.js';
+
+import {
     getState,
     updateState,
     updateStateBatch,
@@ -1140,6 +1148,91 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 100);
     });
+
+    // ============================================================
+    // PERMISSIONS & URL PARAMS
+    // ============================================================
+    function applyPermissions() {
+        const userTitle = getCurrentUserTitle();
+        const allowedRoles = getAllowedRoles(userTitle);
+        const allowedTabs = getAllowedTabs(userTitle);
+
+        if (allowedRoles.length === 0) {
+            console.warn(`[Permissions] Chức danh "${userTitle}" không hợp lệ hoặc không có quyền.`);
+            return { userTitle, allowedRoles, allowedTabs };
+        }
+
+        // Ẩn role-tab
+        document.querySelectorAll('.role-tab').forEach(tab => {
+            const tabId = tab.dataset.tab;
+            if (!allowedTabs.includes(tabId)) {
+                tab.classList.add('hidden');
+            }
+        });
+
+        // Ẩn role-btn
+        document.querySelectorAll('.role-btn').forEach(btn => {
+            const role = btn.dataset.role;
+            if (!allowedRoles.includes(role)) {
+                btn.classList.add('hidden');
+            }
+        });
+
+        return { userTitle, allowedRoles, allowedTabs };
+    }
+
+    function applyUrlParams(perms) {
+        const params = new URLSearchParams(window.location.search);
+        
+        // 1. Dark Mode
+        if (params.get('dark') === '1') {
+            applyDarkMode(true);
+        }
+
+        // 2. Role
+        let targetRole = params.get('role');
+        
+        if (perms.allowedRoles.length > 0) {
+            if (targetRole && !perms.allowedRoles.includes(targetRole)) {
+                console.warn(`Role "${targetRole}" không được phép cho chức danh "${perms.userTitle}".`);
+                targetRole = getDefaultRole(perms.userTitle);
+            } else if (!targetRole) {
+                targetRole = getDefaultRole(perms.userTitle);
+            }
+        }
+
+        if (targetRole) {
+            const roleBtn = document.querySelector(`.role-btn[data-role="${targetRole}"]`);
+            if (roleBtn) {
+                const tabPanel = roleBtn.closest('.tab-panel');
+                if (tabPanel) {
+                    const tabId = tabPanel.id.replace('tab-panel-', '');
+                    const roleTab = document.querySelector(`.role-tab[data-tab="${tabId}"]`);
+                    if (roleTab) {
+                        roleTab.click();
+                    }
+                }
+                roleBtn.click();
+            } else {
+                console.warn(`Role "${targetRole}" không tồn tại trong hệ thống.`);
+            }
+        }
+
+        // 3. Personal Sales Checkbox
+        if (params.get('personal') === '1') {
+            ['has-personal-sales-sl', 'has-personal-sales-sm'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.checked = true;
+                    el.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+    }
+    
+    // Gọi hàm áp dụng permissions & params
+    const perms = applyPermissions();
+    applyUrlParams(perms);
 
     // Initial render
     syncSmTarget();

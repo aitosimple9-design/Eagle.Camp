@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow_file_write": true,
+    "allow_terminal_exec": true
+  },
+  "environment": "development"
+}

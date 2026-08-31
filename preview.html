@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinhan Life 2026 - Launcher</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --fc-color: #0f766e;
+            --sl-color: #1d4ed8;
+            --sm-color: #b45309;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .controls {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .control-group input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .group-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .group-fc .group-title {
+            border-bottom-color: var(--fc-color);
+            color: var(--fc-color);
+        }
+
+        .group-sl .group-title {
+            border-bottom-color: var(--sl-color);
+            color: var(--sl-color);
+        }
+
+        .group-sm .group-title {
+            border-bottom-color: var(--sm-color);
+            color: var(--sm-color);
+        }
+
+        .role-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            color: #fff;
+            transition: opacity 0.2s, transform 0.2s;
+            text-align: center;
+        }
+
+        .role-link:active {
+            transform: scale(0.98);
+        }
+
+        .role-link:hover {
+            opacity: 0.9;
+        }
+
+        .bg-fc {
+            background-color: var(--fc-color);
+        }
+
+        .bg-sl {
+            background-color: var(--sl-color);
+        }
+
+        .bg-sm {
+            background-color: var(--sm-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Xem nhanh giao diện chức danh (Launcher)</h1>
+
+        <div class="controls">
+            <label class="control-group">
+                <input type="checkbox" id="chk-dark">
+                Bật Dark Mode
+            </label>
+            <label class="control-group">
+                <input type="checkbox" id="chk-personal">
+                Mở sẵn "Có doanh số cá nhân" (SL/SM)
+            </label>
+        </div>
+
+        <div class="grid">
+            <!-- Nhóm FC -->
+            <div class="group-card group-fc">
+                <div class="group-title">Nhóm Tư Vấn Viên (FC)</div>
+                <a href="#" class="role-link bg-fc" data-role="FC">FC (Financial Consultant)</a>
+                <a href="#" class="role-link bg-fc" data-role="StarFC">Star FC</a>
+            </div>
+
+            <!-- Nhóm SL -->
+            <div class="group-card group-sl">
+                <div class="group-title">Quản Lý Cấp Trung (SL)</div>
+                <a href="#" class="role-link bg-sl" data-role="GSL">GSL (Group Sales Leader)</a>
+                <a href="#" class="role-link bg-sl" data-role="SSL">SSL (Senior Sales Leader)</a>
+                <a href="#" class="role-link bg-sl" data-role="ESL">ESL (Executive Sales Leader)</a>
+            </div>
+
+            <!-- Nhóm SM -->
+            <div class="group-card group-sm">
+                <div class="group-title">Quản Lý Cấp Cao (SM+)</div>
+                <a href="#" class="role-link bg-sm" data-role="SM">SM (Sales Manager)</a>
+                <a href="#" class="role-link bg-sm" data-role="EM">EM (Executive Manager)</a>
+                <a href="#" class="role-link bg-sm" data-role="ERM">ERM (Executive Regional Manager)</a>
+                <a href="#" class="role-link bg-sm" data-role="IRM">IRM (Institutional Regional Manager)</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chkDark = document.getElementById('chk-dark');
+        const chkPersonal = document.getElementById('chk-personal');
+        const links = document.querySelectorAll('.role-link');
+
+        function updateLinks() {
+            const isDark = chkDark.checked;
+            const isPersonal = chkPersonal.checked;
+
+            links.forEach(link => {
+                const role = link.getAttribute('data-role');
+                let href = `index.html?role=${role}`;
+
+                if (isDark) {
+                    href += '&dark=1';
+                }
+
+                if (isPersonal) {
+                    href += '&personal=1';
+                }
+
+                link.href = href;
+            });
+        }
+
+        chkDark.addEventListener('change', updateLinks);
+        chkPersonal.addEventListener('change', updateLinks);
+
+        // Khởi tạo link ngay ban đầu
+        updateLinks();
+    </script>
+</body>
+
+</html>
